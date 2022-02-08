@@ -16,9 +16,6 @@ public class Matriz_UI : MonoBehaviour
     [SerializeField]
     private Corchetes corchetes;
 
-    public int GetColumana() { return columna; }
-    public int GetFila() { return fila; }
-
     private void Awake()
     {
         Elementos = new LinkedList<elemento>();
@@ -90,6 +87,10 @@ public class Matriz_UI : MonoBehaviour
 
         fila++;
         corchetes.AgregarFila();
+
+    }
+    public void Dimenciones()
+    {
 
     }
     
