@@ -34,7 +34,7 @@ public class Matriz_UI : MonoBehaviour
         {
             var Elem = new LinkedListNode<elemento>(item);
 
-            if (Elementos.Contains(item)) return;
+            if (Elementos.Contains(item)) continue;
 
                 Elementos.AddFirst(Elem);
 
