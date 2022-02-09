@@ -24,7 +24,7 @@ public class Corchetes : MonoBehaviour
     public void ActualizarColumna()
     {
         //creo una lista que tiene todas las columnas de la ultima fila
-        var elem = (from nodo in matriz.Elementos where nodo.columna == matriz.GetColumana() select nodo).ToList();
+        var elem = (from nodo in matriz.Elementos where nodo.columna == matriz.columna select nodo).ToList();
 
         Corchete_Rigth.transform.position = new Vector2 (elem.First().transform.position.x,Corchete_Rigth.transform.position.y);
         Corchete_Rigth.transform.Translate(Corchete_Left.transform.right * RangoColumna);
@@ -34,7 +34,7 @@ public class Corchetes : MonoBehaviour
     {
         var elem = (from nodo in matriz.Elementos where nodo.columna == 0 select nodo);
 
-        var vector = new Vector2(1 ,matriz.GetFila() + 1);
+        var vector = new Vector2(1 ,matriz.fila + 1);
         Corchete_Left.localScale = vector;
         Corchete_Rigth.localScale = vector;
 
