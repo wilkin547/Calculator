@@ -101,7 +101,14 @@ public class Matriz_UI : MonoBehaviour
         transform.position = matriz_UI.transform.position;
         transform.Translate(Vector2.right * 150 * (columna + 1));
     }
-    
+    public void Reset()
+    {
+        while (Elementos.Count >= 1)
+        {
+            Elementos.RemoveFirst();
+        }
+    }
+
 
 
 }

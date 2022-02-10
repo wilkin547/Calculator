@@ -53,7 +53,7 @@ public class sistema_Touch : MonoBehaviour, IDragHandler, IEndDragHandler
                 {
                     if (Fila == 1)
                     {
-
+                        draw
                     }
                     else
                     {
@@ -90,7 +90,7 @@ public class sistema_Touch : MonoBehaviour, IDragHandler, IEndDragHandler
 
             }
 
-
+            
         }
     }
 
