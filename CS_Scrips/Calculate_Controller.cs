@@ -20,6 +20,7 @@ public class Calculate_Controller : MonoBehaviour
             Calculate_Controller.instance = this;
         }
 
+        matrizs = new Stack<Matriz_UI>();
         matrizs.Push(matriz_principal);
     }
 
@@ -43,7 +44,7 @@ public class Calculate_Controller : MonoBehaviour
 
     public void agregar_matriz()
     {
-        if (matrizs.Count >= 1){
+        if (matrizs.Count >= 3){
         
             mensaje_Error("ya tienes mas de 2 matrizes");
             return;
