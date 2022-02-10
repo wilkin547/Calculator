@@ -11,19 +11,21 @@ public class Calculate_Controller : MonoBehaviour
 {
 
     public static Calculate_Controller instance;
-    public LinkedList<Matriz_UI> matrizs;
-    public Matriz_UI matriz_principal;
+
     private void Awake()
     {
         if (Calculate_Controller.instance != null)
         {
             Calculate_Controller.instance = this;
+        matrizs = new LinkedList<Matriz_UI>();
+        matrizs.AddFirst(matriz_principal);
         }
 
-        matrizs = new LinkedList<Matriz_UI>();
-        matrizs.AddLast(matriz_principal);
+
     }
 
+    public LinkedList<Matriz_UI> matrizs;
+    public Matriz_UI matriz_principal;
     //just it would had 3 matriz ; matriz 1 , matriz 2 & resuelt
 
     
