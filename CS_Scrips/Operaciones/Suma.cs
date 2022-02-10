@@ -5,33 +5,17 @@ public class Suma : MonoBehaviour
 {
                                                      
     
-    public void Sumar(Matriz_UI matriz_01, Matriz_UI matriz_02)
+    public void Sumar()
     {
-        //make a array with the valor 
-        elemento[] Elem = (from nodo in matriz_02.Elementos select nodo).ToArray();
+       var elemt1 = Calculate_Controller.instance.matrizs.First.Value.Elementos.ToArray();
+       var eleme2 = Calculate_Controller.instance.matrizs.Last.Value.Elementos.ToArray();
+        Calculate_Controller.instance.agregar_matriz();
+        var resultado = Calculate_Controller.instance.matrizs.First.Value.Elementos.ToArray();
 
-        //if the matraz 1 is no equals to matriz 2 , make a fail
-        if ((matriz_01.Dimenciones() != matriz_02.Dimenciones()))
+        for (int i = 0; i < resultado.Length; i++)
         {
-            Calculate_Controller.instance.mensaje_Error("las matrices deben terner igual columnas y igual Filas");
+            resultado[i].Valor = eleme2[i].Valor + elemt1[i].Valor;
         }
-
-        else
-        {
-
-            var Resultado = matriz_01;
-            var indice = 0;
-
-            foreach (var item in Resultado.Elementos)
-            {
-                item.Valor = Elem[indice].Valor;
-                indice++;
-            }
-
-            Resultado.Move_Matriz(matriz_02);
-            
-        }
-
     }
 
 

@@ -11,7 +11,7 @@ public class Calculate_Controller : MonoBehaviour
 {
 
     public static Calculate_Controller instance;
-    public Stack<Matriz_UI> matrizs;
+    public LinkedList<Matriz_UI> matrizs;
     public Matriz_UI matriz_principal;
     private void Awake()
     {
@@ -20,8 +20,8 @@ public class Calculate_Controller : MonoBehaviour
             Calculate_Controller.instance = this;
         }
 
-        matrizs = new Stack<Matriz_UI>();
-        matrizs.Push(matriz_principal);
+        matrizs = new LinkedList<Matriz_UI>();
+        matrizs.AddLast(matriz_principal);
     }
 
     //just it would had 3 matriz ; matriz 1 , matriz 2 & resuelt
@@ -50,8 +50,10 @@ public class Calculate_Controller : MonoBehaviour
             return;
         }
         var matriz = Instantiate(matriz_principal);
-        matriz.Move_Matriz(matrizs.Peek());
-        matrizs.Push(matriz);
+        matriz.Move_Matriz(matrizs.Last.Value);
+        matrizs.AddLast(matriz);
+
+        print("se agrego matriz " + matriz.name);
         
     }
 
