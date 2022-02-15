@@ -105,6 +105,7 @@ public class Matriz_UI : MonoBehaviour
     {
         while (Elementos.Count >= 1)
         {
+            Destroy(Elementos.First.Value.gameObject);
             Elementos.RemoveFirst();
         }
     }

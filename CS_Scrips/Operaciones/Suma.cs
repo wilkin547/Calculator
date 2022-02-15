@@ -9,6 +9,7 @@ public class Suma : MonoBehaviour
     {
 
         var resultado = Calculate_Controller.instance.agregar_matriz();
+        Sumar_Elementos.Sumar(resultado.Elementos.ToArray(), Calculate_Controller.instance.matrizs.Last.Value.Elementos.ToArray());
 
     }
 

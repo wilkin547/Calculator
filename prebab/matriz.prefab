@@ -377,11 +377,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Valor: 0
   Numero: {fileID: 0}
-  Is_Active: 0
-  activo: {r: 0, g: 0, b: 0, a: 0}
-  desactivar: {r: 0, g: 0, b: 0, a: 0}
-  used: 0
-  guia: {fileID: 0}
   columna: 0
   fila: 0
 --- !u!1 &7671769984141782047

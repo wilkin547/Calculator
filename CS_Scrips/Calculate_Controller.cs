@@ -56,11 +56,31 @@ public class Calculate_Controller : MonoBehaviour
         matriz.Move_Matriz(matrizs.Last.Value);
         matrizs.AddLast(matriz);
 
-        print("se agrego matriz " + matriz.name);
+        if (matriz.name.Contains("clone"))
+        {
+            matriz_Secundaria = matriz;
+        }
         return matriz;
         
     }
 
+    //the same thing but to the button cause it cacth a fail
+    public void agregar_matriz_UI()
+    {
+        if (matrizs.Count >= 3) { 
+              mensaje_Error("ya tienes mas de 2 matrizes");
+        }
+
+        var matriz = Instantiate(matriz_principal);
+        matriz.Move_Matriz(matrizs.Last.Value);
+        matrizs.AddLast(matriz);
+
+        if (matriz.name.Contains("clone")){
+            matriz_Secundaria = matriz;
+        }
+        
+
+    }
     public void mensaje_Error(string Mensaje)
     {
 
@@ -81,7 +101,17 @@ public class Calculate_Controller : MonoBehaviour
 
 }
 
+public class Sumar_Elementos
+{
+    public static void Sumar(elemento[] result , elemento[] b)
+    {
 
+        for (int i = 0; i < result.Length; i++){
+            result[i].Valor += b[i].Valor;
+
+        }
+    }
+}
 
 
 
