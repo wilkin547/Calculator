@@ -14,7 +14,12 @@ public class elemento : MonoBehaviour
 
     private void Update()
     {
+        //Valor = int.Parse(Numero.text);
+    }
+    public void updateText()
+    {
         Valor = int.Parse(Numero.text);
+        Numero.text = Valor.ToString();
     }
 
 
