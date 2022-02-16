@@ -112,11 +112,41 @@ public class Sumar_Elementos
         }
     }
 
-    public void SS()
-    {
-       
-    }
 }
+
+public class Restar_Elementos
+{
+    public static void Restar(elemento[] result, elemento[] b)
+    {
+
+        for (int i = 0; i < result.Length; i++)
+        {
+            result[i].Valor -= b[i].Valor;
+
+        }
+    }
+
+}
+
+public class Multiplicar_Elementos
+{
+    public static void Multiplicar_Escalar(elemento[] result, int b)
+    {
+        for (int i = 0; i < result.Length; i++)
+        {
+            result[i].Valor *= b;
+
+        }
+
+    }
+    public static void Multiplicar(elemento[] result, elemento[] A)
+    {
+
+
+    }
+
+}
+public abstract class Elemento { }
 
 
 
