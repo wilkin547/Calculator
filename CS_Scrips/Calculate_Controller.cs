@@ -1,5 +1,6 @@
-using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 
 
 
@@ -14,6 +15,8 @@ public class Calculate_Controller : MonoBehaviour
     public LinkedList<Matriz_UI> matrizs;
     public Matriz_UI matriz_principal;
     public Matriz_UI matriz_Secundaria;
+
+    public Matriz_UI matriz_Original;
     private void Awake()
     {
         if (Calculate_Controller.instance == null)
@@ -29,7 +32,7 @@ public class Calculate_Controller : MonoBehaviour
 
     //just it would had 3 matriz ; matriz 1 , matriz 2 & resuelt
 
-    
+
     public Matriz_UI result;
 
     public Matriz_UI CurrentMatriz;
@@ -38,17 +41,19 @@ public class Calculate_Controller : MonoBehaviour
     public UnityEngine.UI.Text Mensaje_UI;
     public int Celdas_activas { get; internal set; }
 
-    public void mensaje (string Mensaje) { 
-        
-        print(Mensaje); 
+    public void mensaje(string Mensaje)
+    {
+
+        print(Mensaje);
         Mensaje_UI.text = Mensaje;
         Mensaje_UI.color = Color.white;
     }
 
     public Matriz_UI agregar_matriz()
     {
-        if (matrizs.Count >= 3){
-        
+        if (matrizs.Count >= 3)
+        {
+
             mensaje_Error("ya tienes mas de 2 matrizes");
             return new Matriz_UI();
         }
@@ -61,24 +66,26 @@ public class Calculate_Controller : MonoBehaviour
             matriz_Secundaria = matriz;
         }
         return matriz;
-        
+
     }
 
     //the same thing but to the button cause it cacth a fail
     public void agregar_matriz_UI()
     {
-        if (matrizs.Count >= 3) { 
-              mensaje_Error("ya tienes mas de 2 matrizes");
+        if (matrizs.Count >= 3)
+        {
+            mensaje_Error("ya tienes mas de 2 matrizes");
         }
 
         var matriz = Instantiate(matriz_principal);
         matriz.Move_Matriz(matrizs.Last.Value);
         matrizs.AddLast(matriz);
 
-        if (matriz.name.Contains("clone")){
+        if (matriz.name.Contains("clone"))
+        {
             matriz_Secundaria = matriz;
         }
-        
+
 
     }
     public void mensaje_Error(string Mensaje)
@@ -94,7 +101,7 @@ public class Calculate_Controller : MonoBehaviour
         foreach (var item in matrizs)
         {
             item.Reset();
-        }    
+        }
     }
 
 
@@ -103,10 +110,11 @@ public class Calculate_Controller : MonoBehaviour
 
 public class Sumar_Elementos
 {
-    public static void Sumar(elemento[] result , elemento[] b)
+    public static void Sumar(elemento[] result, elemento[] b)
     {
 
-        for (int i = 0; i < result.Length; i++){
+        for (int i = 0; i < result.Length; i++)
+        {
             result[i].Valor += b[i].Valor;
 
         }
@@ -130,6 +138,7 @@ public class Restar_Elementos
 
 public class Multiplicar_Elementos
 {
+
     public static void Multiplicar_Escalar(elemento[] result, int b)
     {
         for (int i = 0; i < result.Length; i++)
@@ -139,14 +148,40 @@ public class Multiplicar_Elementos
         }
 
     }
-    public static void Multiplicar(elemento[] result, elemento[] A)
+    public static void Multiplicar(elemento[] result, elemento[] A , elemento[] B)
     {
+        //organizo los elementos ;)
+        var elem = (from nodo in result orderby nodo.fila select nodo).ToArray(); 
+        foreach (var item in result){
+            item.Valor = product_filaXcolumnas(A,B,item.fila,item.columna);
+        }
 
 
     }
 
+    private static int product_filaXcolumnas(elemento[] matriz1, elemento[] matriz2, int fila, int columna)
+    {
+        /*
+         * result += A11 * B11
+         * result += A12 * B12
+         * result += A13 * b13
+         * c11 = result
+         */
+
+        elemento[] seccion1 = (from nodo in matriz1 where nodo.columna == columna orderby nodo.fila select nodo).ToArray();
+        elemento[] seccion2 = (from nodo in matriz2 where nodo.fila == fila orderby nodo.columna select nodo).ToArray();
+
+        int resultado = 0;
+        for (int i = 0; i < seccion2.Length; i++)
+        {
+                resultado += seccion1[i].Valor * seccion2[i].Valor;    
+        }
+
+        return resultado;   
+    }
+
 }
-public abstract class Elemento { }
+
 
 
 
