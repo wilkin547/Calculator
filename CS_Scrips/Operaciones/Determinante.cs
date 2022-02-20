@@ -4,15 +4,9 @@ using UnityEngine;
 
 public class Determinante : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    
+    public void Determinant()
     {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

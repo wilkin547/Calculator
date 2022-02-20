@@ -10,6 +10,8 @@ public class Matriz_UI : MonoBehaviour
     public int columna = 0;
     public int fila = 0;
 
+    public Dimensions dimensions = new Dimensions();
+
 
     public LinkedList<elemento> Elementos;
 
@@ -91,9 +93,10 @@ public class Matriz_UI : MonoBehaviour
         corchetes.AgregarFila();
 
     }
-    public string Dimenciones()
+    public Dimensions Dimenciones()
     {
-        return fila + "x" + columna;
+        checkDimension();
+        return dimensions;
     }
     public void Move_Matriz(Matriz_UI matriz_UI)
     {
@@ -103,13 +106,53 @@ public class Matriz_UI : MonoBehaviour
     }
     public void Reset()
     {
-        while (Elementos.Count >= 1)
+        while (Elementos.Count > 1)
         {
             Destroy(Elementos.First.Value.gameObject);
             Elementos.RemoveFirst();
         }
+        
     }
 
+    public enum Dimensions
+    {
+        _1x1,
+        _2x2,
+        _3x3,
+        _4x4,
+        _5x5,
+        Incomplete,
+    }
+
+    private void checkDimension()
+    {
+        
+        if (fila == columna)
+        {
+            switch (fila)
+            {
+                case 1:
+                    dimensions = Dimensions._1x1;
+                    break;
+                case 2:
+                    dimensions = Dimensions._2x2;
+                    break;
+                case 3:
+                    dimensions = Dimensions._3x3;
+                    break;
+                case 4:
+                    dimensions = Dimensions._4x4;
+                    break;
+                case 5:
+                    dimensions = Dimensions._5x5;
+                    break;
+            }
+        }
+        else
+        {
+            dimensions = Dimensions.Incomplete;
+        }
+    }
 
 
 }
