@@ -1,16 +1,18 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 
 public class Transpuesta : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+    public void Invertir(Matriz_UI matriz_Ui )
     {
+        Queue<elemento> queue = new Queue<elemento>(matriz_Ui.Elementos);
         
+
+        foreach (var elemento in matriz_Ui.Elementos)
+        {
+            elemento.Valor = queue.Dequeue().Valor;
+            Calculate_Controller.instance.mensaje("se acaba de hacer una inversa");
+        }
     }
 }

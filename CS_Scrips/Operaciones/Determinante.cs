@@ -47,9 +47,15 @@ public class Determinete
                             */
 
                 a = 0;
-                a += ((elem[0, 0].Valor * elem[1, 1].Valor * elem[2, 2].Valor) 
-                    + (elem[1, 0].Valor * elem[2, 1].Valor * elem[0, 2].Valor) 
-                    + (elem[1, 0].Valor * elem[2, 1].Valor * elem[0, 2].Valor)) - (elem[0, 1].Valor * elem[1, 0].Valor);
+                a += (
+                      (elem[0, 0].Valor * elem[1, 1].Valor * elem[2, 2].Valor)
+                    + (elem[1, 0].Valor * elem[2, 1].Valor * elem[0, 2].Valor)
+                    + (elem[2, 0].Valor * elem[0, 1].Valor * elem[1, 2].Valor))
+                    -
+                     (
+                      (elem[0, 2].Valor * elem[1, 1].Valor * elem[2, 0].Valor)
+                    + (elem[1, 2].Valor * elem[2, 1].Valor * elem[0, 0].Valor)
+                    + (elem[2, 2].Valor * elem[0, 1].Valor * elem[1, 0].Valor));
                 result.Valor = a;
                 break;
             case Matriz_UI.Dimensions._4x4:
