@@ -32,8 +32,6 @@ public class Corchetes : MonoBehaviour
 
     public void AgregarFila()
     {
-        var elem = (from nodo in matriz.Elementos where nodo.columna == 0 select nodo);
-
         var vector = new Vector2(1 ,matriz.fila + 1);
         Corchete_Left.localScale = vector;
         Corchete_Rigth.localScale = vector;
@@ -42,4 +40,13 @@ public class Corchetes : MonoBehaviour
         Corchete_Rigth.transform.Translate(Vector2.down * RangoFila);
     }
 
+    public void EliminarFila()
+    {
+        var vector = new Vector2(1, matriz.fila + 1);
+        Corchete_Left.localScale = vector;
+        Corchete_Rigth.localScale = vector;
+
+        Corchete_Left.transform.Translate(Vector2.up * RangoFila);
+        Corchete_Rigth.transform.Translate(Vector2.up * RangoFila);
+    }
 }

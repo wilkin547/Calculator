@@ -41,20 +41,12 @@ public class Calculate_Controller : MonoBehaviour
     public UnityEngine.UI.Text Mensaje_UI;
     public int Celdas_activas { get; internal set; }
 
-    public void mensaje(string Mensaje)
-    {
-
-        print(Mensaje);
-        Mensaje_UI.text = Mensaje;
-        Mensaje_UI.color = Color.white;
-    }
 
     public Matriz_UI agregar_matriz()
     {
         if (matrizs.Count >= 3)
         {
-
-            mensaje_Error("ya tienes mas de 2 matrizes");
+            Mensajeria.mensaje_Error("ya tienes mas de 2 matrizes");
             return new Matriz_UI();
         }
         var matriz = Instantiate(matriz_principal);
@@ -70,44 +62,50 @@ public class Calculate_Controller : MonoBehaviour
     }
 
     //the same thing but to the button cause it cacth a fail
-    public void agregar_matriz_UI()
+    
+
+}
+ 
+public class Agregar_Matriz_UI{
+
+    public void agregar()
     {
-        if (matrizs.Count >= 3)
+        if (Calculate_Controller.instance.matrizs.Count >= 3)
         {
-            mensaje_Error("ya tienes mas de 2 matrizes");
+            Mensajeria.mensaje_Error ("ya tienes mas de 3 matrizes");
         }
 
-        var matriz = Instantiate(matriz_principal);
-        matriz.Move_Matriz(matrizs.Last.Value);
-        matrizs.AddLast(matriz);
+        var matriz = UnityEngine.MonoBehaviour.Instantiate(Calculate_Controller.instance.matriz_principal);
+        matriz.Move_Matriz(Calculate_Controller.instance.matrizs.Last.Value);
+        Calculate_Controller.instance.matrizs.AddLast(matriz);
 
         if (matriz.name.Contains("clone"))
         {
-            matriz_Secundaria = matriz;
-        }
-
-
-    }
-    public void mensaje_Error(string Mensaje)
-    {
-
-        print(Mensaje);
-        Mensaje_UI.text = Mensaje;
-        Mensaje_UI.color = Color.white;
-    }
-
-    public void Reset()
-    {
-        foreach (var item in matrizs)
-        {
-            item.Reset();
+            Calculate_Controller.instance.matriz_Secundaria = matriz;
         }
     }
-
-
-
 }
 
+
+public class Mensajeria
+{
+    public static void mensaje_Error(string Mensaje)
+    {
+
+        UnityEngine.MonoBehaviour.print(Mensaje);
+        Calculate_Controller.instance.Mensaje_UI.text = Mensaje;
+        Calculate_Controller.instance.Mensaje_UI.color = Color.white;
+    }
+
+    public static void mensaje(string Mensaje)
+    {
+
+        UnityEngine.MonoBehaviour.print(Mensaje);
+        Calculate_Controller.instance.Mensaje_UI.text = Mensaje;
+        Calculate_Controller.instance.Mensaje_UI.color = Color.white;
+    }
+    
+}
 public class Sumar_Elementos
 {
     public static void Sumar(elemento[] result, elemento[] b)

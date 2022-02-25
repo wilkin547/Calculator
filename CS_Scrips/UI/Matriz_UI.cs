@@ -7,8 +7,8 @@ using UnityEngine;
 public class Matriz_UI : MonoBehaviour
 {
 
-    public int columna = 0;
-    public int fila = 0;
+    public byte columna = 0;
+    public byte fila = 0;
 
     public Dimensions dimensions = new Dimensions();
 
@@ -154,5 +154,38 @@ public class Matriz_UI : MonoBehaviour
         }
     }
 
+    public void eleminar_Columna()
+    {
+        columna--;
+        var elem = (from nodo in Elementos where nodo.columna == columna select nodo).ToArray();
+
+        foreach (var item in elem){
+            Destroy(item);
+        }
+
+        foreach (var item in elem){
+            var nodo = new LinkedListNode<elemento>(item);
+            Elementos.Remove(nodo);
+        }
+
+        corchetes.ActualizarColumna();
+    }
+
+    public void eleminar_Fila()
+    {
+        fila--;
+        var elem = (from nodo in Elementos where nodo.fila == fila select nodo).ToArray();
+
+        foreach (var item in elem){
+            Destroy(item);
+        }
+
+        foreach (var item in elem){
+            var nodo = new LinkedListNode<elemento>(item);
+            Elementos.Remove(nodo);
+        }
+
+        corchetes.EliminarFila();
+    }
 
 }
