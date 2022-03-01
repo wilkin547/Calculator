@@ -133,19 +133,19 @@ public class Matriz_UI : MonoBehaviour
         {
             switch (fila)
             {
-                case 1:
+                case 0:
                     dimensions = Dimensions._1x1;
                     break;
-                case 2:
+                case 1:
                     dimensions = Dimensions._2x2;
                     break;
-                case 3:
+                case 2:
                     dimensions = Dimensions._3x3;
                     break;
-                case 4:
+                case 3:
                     dimensions = Dimensions._4x4;
                     break;
-                case 5:
+                case 4:
                     dimensions = Dimensions._5x5;
                     break;
             }

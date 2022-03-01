@@ -12,7 +12,7 @@ public class Suma : MonoBehaviour
         Sumar_Elementos.Sumar(resultado.Elementos.ToArray(), Calculate_Controller.instance.matrizs.Last.Value.Elementos.ToArray());
 
         foreach (var item in resultado.Elementos){
-            item.updateText();
+            item.Numero.text = item.Valor.ToString();
         }
 
     }

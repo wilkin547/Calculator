@@ -11,7 +11,7 @@ public class Determinante : MonoBehaviour
        var elem = Calculate_Controller.instance.agregar_matriz_original();
            Calculate_Controller.instance.result = elem ;
            Determinete.Determinar();
-            
+
     }
 }
 
@@ -27,12 +27,11 @@ public class Determinete : MonoBehaviour
         for (int fila = 0; fila < 2; fila++){
             for (int columna = 0; columna < 2; columna++){
                 elem[fila,columna] = (from nodo in elementos.Elementos where nodo.columna == columna && nodo.fila == fila select nodo).First();
-                Mensajeria.mensaje(elem[fila, columna].Valor.ToString());
+                
             }
         }
 
         int result = (elem[0,0].Valor * elem[1,1].Valor) - (elem[0, 1].Valor * elem[1, 0].Valor);
-        Mensajeria.mensaje(result.ToString());
         return result;
     }
     private static int Determinar3x3(Matriz_UI elementos)
@@ -65,7 +64,31 @@ public class Determinete : MonoBehaviour
 
         foreach (var item in Calculate_Controller.instance.result.Elementos)
         {
-            item.Valor = Determinar2x2(Calculate_Controller.instance.CurrentMatriz);
+            switch (Calculate_Controller.instance.CurrentMatriz.dimensions)
+            {
+                case Matriz_UI.Dimensions._1x1:
+                    
+                    break;
+                case Matriz_UI.Dimensions._2x2:
+                      item.Valor = Determinar2x2(Calculate_Controller.instance.CurrentMatriz);
+                    
+                    break;
+                case Matriz_UI.Dimensions._3x3:
+                    item.Valor = Determinar3x3(Calculate_Controller.instance.CurrentMatriz);
+                    break;
+                case Matriz_UI.Dimensions._4x4:
+                    break;
+                case Matriz_UI.Dimensions._5x5:
+                    break;
+                case Matriz_UI.Dimensions.Incomplete:
+                    Mensajeria.mensaje_Error("error , la matriz debe ser cuadrada : 2x2 , 3x3 , 4x4");
+                    break;
+                default:
+                    
+                    break;
+            }
+            item.Numero.text = item.Valor.ToString();
+
         }
     }
 
