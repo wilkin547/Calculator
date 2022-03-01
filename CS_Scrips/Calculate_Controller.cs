@@ -45,7 +45,7 @@ public class Calculate_Controller : MonoBehaviour
     public Matriz_UI agregar_matriz()
     {
         
-        if (matrizs.Count >= 3)
+        if (matrizs.Count > 2)
         {
             Mensajeria.mensaje_Error("ya tienes mas de 2 matrizes");
             return new Matriz_UI();
@@ -54,7 +54,7 @@ public class Calculate_Controller : MonoBehaviour
         matriz.Move_Matriz(matrizs.Last.Value);
         matrizs.AddLast(matriz);
 
-        if (matriz.name.Contains("clone"))
+        if (matrizs.Count == 2)
         {
             matriz_Secundaria = matriz;
         }
@@ -62,8 +62,27 @@ public class Calculate_Controller : MonoBehaviour
         
     }
 
-    //the same thing but to the button cause it cacth a fail
-    
+
+    /// <summary>
+    /// a matriz to the determinants
+    /// </summary>
+    /// <returns></returns>
+    public Matriz_UI agregar_matriz_original()
+    {
+
+        if (matrizs.Count > 2)
+        {
+            Mensajeria.mensaje_Error("ya tienes mas de 2 matrizes");
+            return new Matriz_UI();
+        }
+        var matriz = Instantiate(matriz_Original);
+        matriz.transform.position = CurrentMatriz.transform.position;
+        matriz.Move_Matriz(matrizs.Last.Value);
+        
+
+        return matriz;
+
+    }
 
 }
  

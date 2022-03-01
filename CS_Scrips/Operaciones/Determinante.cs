@@ -8,7 +8,7 @@ public class Determinante : MonoBehaviour
     public void Determinant()
     {
         
-       var elem = Calculate_Controller.instance.agregar_matriz();
+       var elem = Calculate_Controller.instance.agregar_matriz_original();
            Calculate_Controller.instance.result = elem ;
            Determinete.Determinar();
             
@@ -19,7 +19,7 @@ public class Determinete : MonoBehaviour
 {
     private static int Determinar2x2(Matriz_UI elementos)
     {
-        int result = 0;
+        
 
         elemento[,] elem = new elemento[2,2];
 
@@ -27,11 +27,12 @@ public class Determinete : MonoBehaviour
         for (int fila = 0; fila < 2; fila++){
             for (int columna = 0; columna < 2; columna++){
                 elem[fila,columna] = (from nodo in elementos.Elementos where nodo.columna == columna && nodo.fila == fila select nodo).First();
-                Mensajeria.mensaje(elem[fila, columna].name);
+                Mensajeria.mensaje(elem[fila, columna].Valor.ToString());
             }
         }
 
-        result = (elem[0,0].Valor * elem[1,1].Valor) - (elem[0, 1].Valor * elem[1, 0].Valor);
+        int result = (elem[0,0].Valor * elem[1,1].Valor) - (elem[0, 1].Valor * elem[1, 0].Valor);
+        Mensajeria.mensaje(result.ToString());
         return result;
     }
     private static int Determinar3x3(Matriz_UI elementos)

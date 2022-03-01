@@ -104,7 +104,7 @@ public class Matriz_UI : MonoBehaviour
     {
         transform.parent = matriz_UI.transform.parent;
         transform.position = matriz_UI.transform.position;
-        transform.Translate(Vector2.right * 150 * (columna + 1));
+        transform.Translate(Vector2.right * 150 * (matriz_UI.columna + 1));
     }
     public void Reset()
     {
