@@ -1,71 +1,72 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using System.Linq;
+
 
 public class Determinante : MonoBehaviour
 {
     
     public void Determinant()
     {
-
-       var elem = Instantiate(Calculate_Controller.instance.matriz_Original);
+        
+       var elem = Calculate_Controller.instance.agregar_matriz();
+           Calculate_Controller.instance.result = elem ;
+           Determinete.Determinar();
+            
     }
 }
-public class Determinete
+
+public class Determinete : MonoBehaviour
 {
-    public static void Determinar(Matriz_UI ui,elemento result)
+    private static int Determinar2x2(Matriz_UI elementos)
     {
-        if (ui.dimensions != Matriz_UI.Dimensions.Incomplete){
-            Calculate_Controller.instance.mensaje_Error("la matriz debe ser completa");
-            return;
+        int result = 0;
+
+        elemento[,] elem = new elemento[2,2];
+
+       //organize the elements
+        for (int fila = 0; fila < 2; fila++){
+            for (int columna = 0; columna < 2; columna++){
+                elem[fila,columna] = (from nodo in elementos.Elementos where nodo.columna == columna && nodo.fila == fila select nodo).First();
+                Mensajeria.mensaje(elem[fila, columna].name);
+            }
         }
 
-        elemento[,] elem = new elemento[(int)Mathf.Sqrt(ui.Elementos.Count), (int)Mathf.Sqrt(ui.Elementos.Count)];
-        foreach (var item in ui.Elementos){
-            elem[item.fila, item.columna] = item;
+        result = (elem[0,0].Valor * elem[1,1].Valor) - (elem[0, 1].Valor * elem[1, 0].Valor);
+        return result;
+    }
+    private static int Determinar3x3(Matriz_UI elementos)
+    {
+        int result = 0;
+        elemento[,] elem = new elemento[3, 3];
+
+        //organize the elements
+        for (int fila = 0; fila < 3; fila++)
+        {
+            for (int columna = 0; columna < 3; columna++)
+            {
+                elem[fila, columna] = (from nodo in elementos.Elementos where nodo.columna == columna && nodo.fila == fila select nodo).First();
+                Mensajeria.mensaje(elem[fila, columna].name);
+            }
         }
 
-        switch (ui.dimensions) {
-            case Matriz_UI.Dimensions._1x1:
-                result.Valor = elem[0, 0].Valor;
-                break;
+        result =((elem[0, 0].Valor * elem[1, 1].Valor * elem[2,2].Valor) +
+                 (elem[1, 0].Valor * elem[2, 1].Valor * elem[0,2].Valor) +
+                 (elem[2, 0].Valor * elem[0, 1].Valor * elem[1,2].Valor)
 
-            case Matriz_UI.Dimensions._2x2:
-                /* [a00,a01]
-                 * [a10,a11]
-                 */
+               - (elem[2, 0].Valor * elem[1, 1].Valor * elem[0, 2].Valor) +
+                 (elem[0, 0].Valor * elem[2, 1].Valor * elem[1, 2].Valor) +
+                 (elem[1, 0].Valor * elem[0, 1].Valor * elem[2, 2].Valor));
+        return result;
+    }
+    public static void Determinar()
+    {
+        Mensajeria.mensaje((Determinar2x2(Calculate_Controller.instance.CurrentMatriz)).ToString());
 
-                var a = 0;
-                a += (elem[0, 0].Valor * elem[1, 1].Valor) - (elem[0, 1].Valor * elem[1, 0].Valor);
-                result.Valor = a;
-
-                break;
-            case Matriz_UI.Dimensions._3x3:
-                /* [a00,a01,a02]
-                 * [a10,a11,a12]
-                 * [a20,a21,a22]
-                            */
-
-                a = 0;
-                a += (
-                      (elem[0, 0].Valor * elem[1, 1].Valor * elem[2, 2].Valor)
-                    + (elem[1, 0].Valor * elem[2, 1].Valor * elem[0, 2].Valor)
-                    + (elem[2, 0].Valor * elem[0, 1].Valor * elem[1, 2].Valor))
-                    -
-                     (
-                      (elem[0, 2].Valor * elem[1, 1].Valor * elem[2, 0].Valor)
-                    + (elem[1, 2].Valor * elem[2, 1].Valor * elem[0, 0].Valor)
-                    + (elem[2, 2].Valor * elem[0, 1].Valor * elem[1, 0].Valor));
-                result.Valor = a;
-                break;
-            case Matriz_UI.Dimensions._4x4:
-                break;
-            case Matriz_UI.Dimensions._5x5:
-                break;
-            case Matriz_UI.Dimensions.Incomplete:
-                break;
-            default:
-                break;
+        foreach (var item in Calculate_Controller.instance.result.Elementos)
+        {
+            item.Valor = Determinar2x2(Calculate_Controller.instance.CurrentMatriz);
         }
     }
+
+
 }

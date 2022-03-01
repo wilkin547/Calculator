@@ -27,13 +27,13 @@ public class elemento : MonoBehaviour
 
     public void updateText()
     {
-        Numero.text = Valor.ToString();
+       
     }
     public void UpdateCurrentMatriz()
     {
         Calculate_Controller.instance.CurrentMatriz = father;
         Calculate_Controller.instance.CurrentElemento = this;
-        Calculate_Controller.instance.mensaje($"la matriz actual es {father.name}");
+        Mensajeria.mensaje($"la matriz actual es {father.name}");
     }
 
     

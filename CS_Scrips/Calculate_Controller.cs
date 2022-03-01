@@ -44,6 +44,7 @@ public class Calculate_Controller : MonoBehaviour
 
     public Matriz_UI agregar_matriz()
     {
+        
         if (matrizs.Count >= 3)
         {
             Mensajeria.mensaje_Error("ya tienes mas de 2 matrizes");
@@ -58,7 +59,7 @@ public class Calculate_Controller : MonoBehaviour
             matriz_Secundaria = matriz;
         }
         return matriz;
-
+        
     }
 
     //the same thing but to the button cause it cacth a fail
@@ -92,9 +93,9 @@ public class Mensajeria
     public static void mensaje_Error(string Mensaje)
     {
 
-        UnityEngine.MonoBehaviour.print(Mensaje);
+        Debug.LogError(Mensaje);
         Calculate_Controller.instance.Mensaje_UI.text = Mensaje;
-        Calculate_Controller.instance.Mensaje_UI.color = Color.white;
+        Calculate_Controller.instance.Mensaje_UI.color = Color.red;
     }
 
     public static void mensaje(string Mensaje)
@@ -179,6 +180,7 @@ public class Multiplicar_Elementos
     }
 
 }
+
 
 
 

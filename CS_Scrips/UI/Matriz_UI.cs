@@ -62,7 +62,8 @@ public class Matriz_UI : MonoBehaviour
 
         corchetes.ActualizarColumna();
         columna++;
-        
+
+        checkDimension();
         Agregar_Celdas();
     }
     public void Agregar_Fila()
@@ -90,6 +91,7 @@ public class Matriz_UI : MonoBehaviour
         }
 
         fila++;
+        checkDimension();
         corchetes.AgregarFila();
 
     }
@@ -169,6 +171,7 @@ public class Matriz_UI : MonoBehaviour
         }
 
         corchetes.ActualizarColumna();
+        checkDimension();
     }
 
     public void eleminar_Fila()
@@ -185,6 +188,7 @@ public class Matriz_UI : MonoBehaviour
             Elementos.Remove(nodo);
         }
 
+        checkDimension();
         corchetes.EliminarFila();
     }
 
