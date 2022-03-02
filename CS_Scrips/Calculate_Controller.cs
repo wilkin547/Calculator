@@ -131,10 +131,16 @@ public class Sumar_Elementos
     public static void Sumar(elemento[] result, elemento[] b)
     {
 
-        for (int i = 0; i < result.Length; i++)
-        {
-            result[i].Valor += b[i].Valor;
+        if (result.Length != b.Length){
+            Mensajeria.mensaje_Error("ambas matrices deben tener las mismas cantidad de celdas");
+        }
 
+        elemento[] Resul = (from nodo in result orderby nodo.columna select nodo).ToArray();
+        elemento[] bb = (from nodo in b orderby nodo.columna select nodo).ToArray();
+
+        for (int i = 0; i < Resul.Length; i++)
+        {
+            result[i].Valor += bb[i].Valor;
         }
     }
 
