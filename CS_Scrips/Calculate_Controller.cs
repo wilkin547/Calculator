@@ -50,6 +50,7 @@ public class Calculate_Controller : MonoBehaviour
             Mensajeria.mensaje_Error("ya tienes mas de 2 matrizes");
             return new Matriz_UI();
         }
+
         var matriz = Instantiate(matriz_principal);
         matriz.Move_Matriz(matrizs.Last.Value);
         matrizs.AddLast(matriz);
@@ -61,7 +62,6 @@ public class Calculate_Controller : MonoBehaviour
         return matriz;
         
     }
-
 
     /// <summary>
     /// a matriz to the determinants
@@ -86,6 +86,7 @@ public class Calculate_Controller : MonoBehaviour
 
 }
  
+
 public class Agregar_Matriz_UI{
 
     public void agregar()
@@ -106,7 +107,6 @@ public class Agregar_Matriz_UI{
     }
 }
 
-
 public class Mensajeria
 {
     public static void mensaje_Error(string Mensaje)
@@ -126,39 +126,51 @@ public class Mensajeria
     }
     
 }
-public class Sumar_Elementos
+public class Sumar_Elementos:Organizar_elementos
 {
-    public static void Sumar(elemento[] result, elemento[] b)
+    public static void Sumar()
     {
+        Organizar();
 
-        if (result.Length != b.Length){
-            Mensajeria.mensaje_Error("ambas matrices deben tener las mismas cantidad de celdas");
+        for (int i = 0; i < Result.Length; i++){
+            Result[i].Valor -= Secundaria[i].Valor;
         }
+    }
 
-        elemento[] Resul = (from nodo in result orderby nodo.columna select nodo).ToArray();
-        elemento[] bb = (from nodo in b orderby nodo.columna select nodo).ToArray();
+}
+public class Restar_Elementos: Organizar_elementos
+{
+    public static void Restar(){
 
-        for (int i = 0; i < Resul.Length; i++)
-        {
-            result[i].Valor += bb[i].Valor;
+        Organizar();
+        for (int i = 0; i < Result.Length; i++){
+            Result[i].Valor -= Secundaria[i].Valor;  
         }
     }
 
 }
 
-public class Restar_Elementos
+/// <summary>
+/// a clase to organize the elements of the matriz
+/// </summary>
+
+public abstract class Organizar_elementos
 {
-    public static void Restar(elemento[] result, elemento[] b)
-    {
+        public static elemento[] Result = (from nodo in Calculate_Controller.instance.result.Elementos orderby nodo.columna select nodo).ToArray();
+        public static elemento[] Secundaria = (from nodo in Calculate_Controller.instance.matriz_Secundaria.Elementos orderby nodo.columna select nodo).ToArray();
+        public static elemento[] principa = (from nodo in Calculate_Controller.instance.matriz_Secundaria.Elementos orderby nodo.columna select nodo).ToArray();
 
-        for (int i = 0; i < result.Length; i++)
-        {
-            result[i].Valor -= b[i].Valor;
-
+        public static void Organizar()
+         {
+            Result = (from nodo in Calculate_Controller.instance.result.Elementos orderby nodo.columna select nodo).ToArray();
+            Secundaria = (from nodo in Calculate_Controller.instance.matriz_Secundaria.Elementos orderby nodo.columna select nodo).ToArray();
+            principa = (from nodo in Calculate_Controller.instance.matriz_Secundaria.Elementos orderby nodo.columna select nodo).ToArray();
+    
         }
-    }
-
 }
+/// <summary>
+/// a clase to multiplicate the elements
+/// </summary>
 
 public class Multiplicar_Elementos
 {
@@ -176,6 +188,7 @@ public class Multiplicar_Elementos
     {
         //organizo los elementos ;)
         var elem = (from nodo in result orderby nodo.fila select nodo).ToArray(); 
+
         foreach (var item in result){
             item.Valor = product_filaXcolumnas(A,B,item.fila,item.columna);
         }
@@ -205,6 +218,8 @@ public class Multiplicar_Elementos
     }
 
 }
+
+
 
 
 

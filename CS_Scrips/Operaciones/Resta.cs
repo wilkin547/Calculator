@@ -1,18 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Resta : MonoBehaviour
+public class Resta : ComprobarMatrizes
 {
-    // Start is called before the first frame update
-    void Start()
+    public override void operar()
     {
-        
-    }
+       base.operar();
+        Restar_Elementos.Restar();
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        foreach (var item in Calculate_Controller.instance.result.Elementos){
+            item.Numero.text = item.Valor.ToString();
+        }
     }
 }

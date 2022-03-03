@@ -1,25 +1,11 @@
-﻿using System.Linq;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Suma : MonoBehaviour
+public class Suma : ComprobarMatrizes
 {
-                                                     
-    
-    public void Sumar()
+    public override void operar()
     {
-        
-        if (Calculate_Controller.instance.matriz_Secundaria == null){
-            Calculate_Controller.instance.matriz_Secundaria = Calculate_Controller.instance.agregar_matriz();
-            Mensajeria.mensaje("se agrego la matriz secundaria");
-            return;
-        }
-        if ( Calculate_Controller.instance.result == null){
-            Calculate_Controller.instance.result = Calculate_Controller.instance.agregar_matriz();
-            Mensajeria.mensaje("se agrego el resultado");
-            
-        }
-
-        Sumar_Elementos.Sumar(Calculate_Controller.instance.result.Elementos.ToArray(), Calculate_Controller.instance.matriz_Secundaria.Elementos.ToArray());
+        base.operar();
+        Sumar_Elementos.Sumar();
 
         foreach (var item in Calculate_Controller.instance.result.Elementos){
             item.Numero.text = item.Valor.ToString();
@@ -27,11 +13,8 @@ public class Suma : MonoBehaviour
 
     }
 
-    private void CompruebaMatrices()
-    {
-        
 
-
-    }
 
 }
+
+
