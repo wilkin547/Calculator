@@ -47,7 +47,6 @@ public class Matriz_UI : MonoBehaviour
     public void Agregar_Columna()
     {
 
-        Agregar_Celdas();
         var Elem = (from Nodo in Elementos where Nodo.columna == columna select Nodo).ToList<elemento>();
 
         //utilizo el copy , para no recrearlo para cada bucle
@@ -63,6 +62,10 @@ public class Matriz_UI : MonoBehaviour
         corchetes.ActualizarColumna();
         columna++;
 
+        if (Calculate_Controller.instance.matriz_principal == this)
+        {
+            transform.Translate(Vector2.left * 125);
+        }
         checkDimension();
         Agregar_Celdas();
     }
@@ -104,7 +107,7 @@ public class Matriz_UI : MonoBehaviour
     {
         transform.parent = matriz_UI.transform.parent;
         transform.position = matriz_UI.transform.position;
-        transform.Translate(Vector2.right * 150 * (matriz_UI.columna + 1));
+        transform.Translate(Vector2.right * 190 * (matriz_UI.columna + 1));
     }
     public void Reset()
     {
