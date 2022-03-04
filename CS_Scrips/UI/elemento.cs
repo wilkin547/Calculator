@@ -17,10 +17,10 @@ public class elemento : MonoBehaviour
     
     public void UpdateCurrentMatriz()
     {
-        Calculate_Controller.instance.CurrentMatriz = father;
-        Calculate_Controller.instance.CurrentElemento = this;
+        CC.ins.CurrentMatriz = father;
+        CC.ins.CurrentElemento = this;
         Mensajeria.mensaje($"la matriz actual es {father.name}");
-        Mensajeria.mensaje($"el elemento actual es {Calculate_Controller.instance.CurrentElemento.name}");
+        Mensajeria.mensaje($"el elemento actual es {CC.ins.CurrentElemento.name}");
     }
 
     

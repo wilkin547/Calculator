@@ -7,7 +7,7 @@ public class Suma : ComprobarMatrizes
         base.operar();
         Sumar_Elementos.Sumar();
 
-        foreach (var item in Calculate_Controller.instance.result.Elementos){
+        foreach (var item in CC.ins.result.Elementos){
             item.Numero.text = item.Valor.ToString();
         }
 

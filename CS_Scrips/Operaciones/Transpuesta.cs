@@ -6,7 +6,7 @@ public class Transpuesta : MonoBehaviour
 
     public void Invertir()
     {
-        var Matriz = Calculate_Controller.instance.matriz_principal;
+        var Matriz = CC.ins.matriz_principal;
 
         switch (Matriz.dimensions)
         {

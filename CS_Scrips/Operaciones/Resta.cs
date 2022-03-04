@@ -7,7 +7,7 @@ public class Resta : ComprobarMatrizes
        base.operar();
         Restar_Elementos.Restar();
 
-        foreach (var item in Calculate_Controller.instance.result.Elementos){
+        foreach (var item in CC.ins.result.Elementos){
             item.Numero.text = item.Valor.ToString();
         }
     }

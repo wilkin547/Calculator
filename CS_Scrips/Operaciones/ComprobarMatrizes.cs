@@ -5,17 +5,18 @@ public class ComprobarMatrizes : MonoBehaviour
 {
     public virtual void operar()
     {
-        if (Calculate_Controller.instance.matriz_Secundaria == null)
+        if (CC.ins.matriz_Secundaria == null)
         {
-            Calculate_Controller.instance.matriz_Secundaria = Calculate_Controller.instance.agregar_matriz();
+            CC.ins.matriz_Secundaria = CC.ins.agregar_matriz();
             Mensajeria.mensaje("se agrego la matriz secundaria");
             return;
         }
-        if (Calculate_Controller.instance.result == null)
+        if (CC.ins.result == null)
         {
-            Calculate_Controller.instance.result = Calculate_Controller.instance.agregar_matriz();
+            CC.ins.result = CC.ins.agregar_matriz();
             Mensajeria.mensaje("se agrego el resultado");
 
         }
     }
+
 }

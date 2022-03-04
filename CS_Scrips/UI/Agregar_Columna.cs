@@ -4,6 +4,6 @@ public class Agregar_Columna : MonoBehaviour
 {
     public void Agregar()
     {
-        Calculate_Controller.instance.CurrentMatriz.Agregar_Columna();
+        CC.ins.CurrentMatriz.Agregar_Columna();
     }
 }

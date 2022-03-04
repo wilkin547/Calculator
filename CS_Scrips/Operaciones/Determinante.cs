@@ -8,8 +8,8 @@ public class Determinante : MonoBehaviour
     public void Determinant()
     {
         
-       var elem = Calculate_Controller.instance.agregar_matriz_original();
-           Calculate_Controller.instance.result = elem ;
+       var elem = CC.ins.agregar_matriz_original();
+           CC.ins.result = elem ;
            Determinete.Determinar();
 
     }
@@ -60,21 +60,21 @@ public class Determinete : MonoBehaviour
     }
     public static void Determinar()
     {
-        Mensajeria.mensaje((Determinar2x2(Calculate_Controller.instance.CurrentMatriz)).ToString());
+        Mensajeria.mensaje((Determinar2x2(CC.ins.CurrentMatriz)).ToString());
 
-        foreach (var item in Calculate_Controller.instance.result.Elementos)
+        foreach (var item in CC.ins.result.Elementos)
         {
-            switch (Calculate_Controller.instance.CurrentMatriz.dimensions)
+            switch (CC.ins.CurrentMatriz.dimensions)
             {
                 case Matriz_UI.Dimensions._1x1:
                     
                     break;
                 case Matriz_UI.Dimensions._2x2:
-                      item.Valor = Determinar2x2(Calculate_Controller.instance.CurrentMatriz);
+                      item.Valor = Determinar2x2(CC.ins.CurrentMatriz);
                     
                     break;
                 case Matriz_UI.Dimensions._3x3:
-                    item.Valor = Determinar3x3(Calculate_Controller.instance.CurrentMatriz);
+                    item.Valor = Determinar3x3(CC.ins.CurrentMatriz);
                     break;
                 case Matriz_UI.Dimensions._4x4:
                     break;

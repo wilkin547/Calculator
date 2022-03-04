@@ -14,8 +14,8 @@ public class Agregar_Numeros : MonoBehaviour
 
     private void Agregar()
     {
-        Calculate_Controller.instance.CurrentElemento.Numero.text += numero;
-        Calculate_Controller.instance.CurrentElemento.Valor = int.Parse(Calculate_Controller.instance.CurrentElemento.Numero.text);
+        CC.ins.CurrentElemento.Numero.text += numero;
+        CC.ins.CurrentElemento.Valor = int.Parse(CC.ins.CurrentElemento.Numero.text);
     }
 
 

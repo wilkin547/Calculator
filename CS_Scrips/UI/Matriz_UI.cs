@@ -62,7 +62,7 @@ public class Matriz_UI : MonoBehaviour
         corchetes.ActualizarColumna();
         columna++;
 
-        if (Calculate_Controller.instance.matriz_principal == this)
+        if (CC.ins.matriz_principal == this)
         {
             transform.Translate(Vector2.left * 125);
         }
@@ -161,37 +161,29 @@ public class Matriz_UI : MonoBehaviour
 
     public void eleminar_Columna()
     {
+        
+        var elem = (from nodo in Elementos where nodo.fila == fila select nodo).ToArray();
+
+        foreach (var item in elem){
+           Destroy(item);
+        }
         columna--;
-        var elem = (from nodo in Elementos where nodo.columna == columna select nodo).ToArray();
-
-        foreach (var item in elem){
-            Destroy(item);
-        }
-
-        foreach (var item in elem){
-            var nodo = new LinkedListNode<elemento>(item);
-            Elementos.Remove(nodo);
-        }
-
         corchetes.ActualizarColumna();
         checkDimension();
     }
 
     public void eleminar_Fila()
     {
-        fila--;
-        var elem = (from nodo in Elementos where nodo.fila == fila select nodo).ToArray();
+        
+        var elem = (from nodo in Elementos where nodo.columna == columna select nodo).ToArray();
 
         foreach (var item in elem){
+            
             Destroy(item);
         }
-
-        foreach (var item in elem){
-            var nodo = new LinkedListNode<elemento>(item);
-            Elementos.Remove(nodo);
-        }
-
-        checkDimension();
+        
+        fila--;
+        checkDimension(); 
         corchetes.EliminarFila();
     }
 
