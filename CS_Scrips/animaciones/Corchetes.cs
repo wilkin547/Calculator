@@ -21,13 +21,21 @@ public class Corchetes : MonoBehaviour
         matriz = GetComponentInParent<Matriz_UI>();
     }
 
-    public void ActualizarColumna()
+    public void agregarColumna()
     {
         //creo una lista que tiene todas las columnas de la ultima fila
         var elem = (from nodo in matriz.Elementos where nodo.columna == matriz.columna select nodo).ToList();
 
         Corchete_Rigth.transform.position = new Vector2 (elem.First().transform.position.x,Corchete_Rigth.transform.position.y);
-        Corchete_Rigth.transform.Translate(Corchete_Left.transform.right * RangoColumna);
+        Corchete_Rigth.transform.Translate(Vector2.right * RangoColumna);
+    }
+    public void EliminarColumna()
+    {
+        //creo una lista que tiene todas las columnas de la ultima fila
+        var elem = (from nodo in matriz.Elementos where nodo.columna == matriz.columna select nodo).ToList();
+
+        Corchete_Rigth.transform.position = new Vector2(elem.First().transform.position.x, Corchete_Rigth.transform.position.y);
+        Corchete_Rigth.transform.Translate(Vector2.right * (RangoColumna -120));
     }
 
     public void AgregarFila()

@@ -59,7 +59,7 @@ public class Matriz_UI : MonoBehaviour
             Copy.gameObject.GetComponent<RectTransform>().Translate(item.transform.right * 120);
         }
 
-        corchetes.ActualizarColumna();
+        corchetes.agregarColumna();
         columna++;
 
         if (CC.ins.matriz_principal == this)
@@ -161,26 +161,45 @@ public class Matriz_UI : MonoBehaviour
 
     public void eleminar_Columna()
     {
-        
-        var elem = (from nodo in Elementos where nodo.fila == fila select nodo).ToArray();
 
-        foreach (var item in elem){
-           Destroy(item);
+
+        var elem = (from nodo in Elementos where nodo.columna == columna select nodo).ToArray();
+
+        foreach (var item in elem)
+        {
+            Elementos.Remove(item);
+            Destroy(item.gameObject);
         }
+
+        foreach (var item in Elementos)
+        {
+          //  item.GetComponent<RectTransform>().Translate(item.GetComponent<RectTransform>().transform.right * -60);
+        }
+
+        if (columna == 0) return;
+
         columna--;
-        corchetes.ActualizarColumna();
         checkDimension();
+        corchetes.EliminarColumna();
     }
 
     public void eleminar_Fila()
     {
-        
-        var elem = (from nodo in Elementos where nodo.columna == columna select nodo).ToArray();
+
+
+        elemento[] elem = (from nodo in Elementos where nodo.fila == fila select nodo).ToArray();
 
         foreach (var item in elem){
-            
-            Destroy(item);
+            Elementos.Remove(item);
+            Destroy(item.gameObject);
         }
+
+        foreach (var item in Elementos)
+        {
+            item.GetComponent<RectTransform>().Translate(item.GetComponent<RectTransform>().transform.up * -120);
+        }
+
+        if (fila == 0) return;
         
         fila--;
         checkDimension(); 
