@@ -15,7 +15,7 @@ public class CC : MonoBehaviour
     public LinkedList<Matriz_UI> matrizs;
     public Matriz_UI matriz_principal;
     public Matriz_UI matriz_Secundaria;
-
+    public Transform father;
     public Matriz_UI matriz_Original;
     private void Awake()
     {
@@ -82,8 +82,9 @@ public class CC : MonoBehaviour
             return new Matriz_UI();
         }
         var matriz = Instantiate(matriz_Original);
-        matriz.transform.position = CurrentMatriz.transform.position;
-        matriz.Move_Matriz(matrizs.Last.Value);
+        matriz.transform.SetParent(father);
+        matriz.transform.position = new Vector3 (300,0,0);
+        //matriz.transform.Translate(Vector2.right  * 500);
 
 
         return matriz;

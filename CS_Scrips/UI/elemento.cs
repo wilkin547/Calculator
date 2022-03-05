@@ -20,7 +20,7 @@ public class elemento : MonoBehaviour
         CC.ins.CurrentMatriz = father;
         CC.ins.CurrentElemento = this;
         Mensajeria.mensaje($"la matriz actual es {father.name}");
-        Mensajeria.mensaje($"el elemento actual es {CC.ins.CurrentElemento.name}");
+        Mensajeria.mensaje($"el elemento actual es la celda {columna}{fila}");
     }
 
     
