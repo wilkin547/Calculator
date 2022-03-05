@@ -11,7 +11,6 @@ public class Corchetes : MonoBehaviour
     public float RangoColumna;
     [Range(-200f, 200f)]
     public float RangoFila;
-
     private void Awake()
     {
         //inicializo los elementos
@@ -20,7 +19,6 @@ public class Corchetes : MonoBehaviour
         Corchete_Rigth = (from nodo in GetComponentsInChildren<RectTransform>() where nodo.name == "Rigth" select nodo).First();
         matriz = GetComponentInParent<Matriz_UI>();
     }
-
     public void agregarColumna()
     {
         //creo una lista que tiene todas las columnas de la ultima fila
@@ -37,7 +35,6 @@ public class Corchetes : MonoBehaviour
         Corchete_Rigth.transform.position = new Vector2(elem.First().transform.position.x, Corchete_Rigth.transform.position.y);
         Corchete_Rigth.transform.Translate(Vector2.right * (RangoColumna -120));
     }
-
     public void AgregarFila()
     {
         var vector = new Vector2(1 ,matriz.fila + 1);
@@ -47,7 +44,6 @@ public class Corchetes : MonoBehaviour
         Corchete_Left.transform.Translate(Vector2.down * RangoFila);
         Corchete_Rigth.transform.Translate(Vector2.down * RangoFila);
     }
-
     public void EliminarFila()
     {
         var vector = new Vector2(1, matriz.fila + 1);

@@ -216,8 +216,8 @@ public class Multiplicar_Elementos
          * c11 = result
          */
 
-        elemento[] seccion1 = (from nodo in CC.ins.matriz_principal.Elementos where nodo.columna == columna orderby nodo.columna select nodo).ToArray();
-        elemento[] seccion2 = (from nodo in CC.ins.matriz_Secundaria.Elementos where nodo.fila == fila orderby nodo.fila select nodo).ToArray();
+        elemento[] seccion1 = (from nodo in CC.ins.matriz_principal.Elementos where nodo.fila == fila orderby nodo.columna select nodo).ToArray();
+        elemento[] seccion2 = (from nodo in CC.ins.matriz_Secundaria.Elementos where nodo.columna == columna orderby nodo.fila select nodo).ToArray();
 
         int resultado = 0;
         for (int i = 0; i < seccion2.Length; i++)

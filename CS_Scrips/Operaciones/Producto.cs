@@ -13,7 +13,21 @@ public class Producto : ComprobarMatrizes
             return;
         }
 
-        CC.ins.result.eleminar_Columna();
+        while (CC.ins.result.columna < CC.ins.matriz_Secundaria.columna){
+            CC.ins.result.Agregar_Columna();
+        }
+        while (CC.ins.result.columna > CC.ins.matriz_Secundaria.columna)
+        {
+            CC.ins.result.eleminar_Columna();
+        }
+        while (CC.ins.result.fila > CC.ins.matriz_principal.fila)
+        {
+            CC.ins.result.eleminar_Fila();
+        }
+        while (CC.ins.result.fila < CC.ins.matriz_principal.fila)
+        {
+            CC.ins.result.Agregar_Fila();
+        }
 
         Multiplicar_Elementos.Multiplicar();
 
