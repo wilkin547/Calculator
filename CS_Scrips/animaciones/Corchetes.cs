@@ -53,4 +53,8 @@ public class Corchetes : MonoBehaviour
         Corchete_Left.transform.Translate(Vector2.up * RangoFila);
         Corchete_Rigth.transform.Translate(Vector2.up * RangoFila);
     }
+    public Transform CorcheteRigth()
+    {
+        return Corchete_Rigth;
+    }
 }

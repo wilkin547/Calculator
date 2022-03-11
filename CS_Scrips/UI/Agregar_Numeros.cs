@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
+
 
 public class Agregar_Numeros : MonoBehaviour
 {
@@ -15,7 +15,9 @@ public class Agregar_Numeros : MonoBehaviour
     private void Agregar()
     {
         CC.ins.CurrentElemento.Numero.text += numero;
+        CC.ins.CurrentElementoInversa.Numero.text += numero;
         CC.ins.CurrentElemento.Valor = int.Parse(CC.ins.CurrentElemento.Numero.text);
+        CC.ins.CurrentElementoInversa.Valor = int.Parse(CC.ins.CurrentElementoInversa.Numero.text);
     }
 
 

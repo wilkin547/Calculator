@@ -12,7 +12,7 @@ public class Matriz_UI : MonoBehaviour
 
     public Dimensions dimensions = new Dimensions();
 
-
+    public Matriz_UI inversa;
     public LinkedList<elemento> Elementos;
 
     [SerializeField]
@@ -47,6 +47,7 @@ public class Matriz_UI : MonoBehaviour
     public void Agregar_Columna()
     {
 
+
         var Elem = (from Nodo in Elementos where Nodo.columna == columna select Nodo).ToList<elemento>();
 
         //utilizo el copy , para no recrearlo para cada bucle
@@ -68,6 +69,11 @@ public class Matriz_UI : MonoBehaviour
         }
         checkDimension();
         Agregar_Celdas();
+
+        if (inversa == null) return;
+
+        inversa.Agregar_Fila();
+ 
     }
     public void Agregar_Fila()
     {
@@ -96,12 +102,10 @@ public class Matriz_UI : MonoBehaviour
         fila++;
         checkDimension();
         corchetes.AgregarFila();
+        if (inversa == null) return;
 
-    }
-    public Dimensions Dimenciones()
-    {
-        checkDimension();
-        return dimensions;
+        inversa.Agregar_Columna();
+
     }
     public void Move_Matriz(Matriz_UI matriz_UI)
     {
@@ -118,7 +122,6 @@ public class Matriz_UI : MonoBehaviour
         }
         
     }
-
     public enum Dimensions
     {
         _1x1,
@@ -128,7 +131,6 @@ public class Matriz_UI : MonoBehaviour
         _5x5,
         Incomplete,
     }
-
     private void checkDimension()
     {
         
@@ -158,7 +160,6 @@ public class Matriz_UI : MonoBehaviour
             dimensions = Dimensions.Incomplete;
         }
     }
-
     public void eleminar_Columna()
     {
 
@@ -181,8 +182,11 @@ public class Matriz_UI : MonoBehaviour
         columna--;
         checkDimension();
         corchetes.EliminarColumna();
-    }
 
+        if (inversa == null) return;
+
+        inversa.eleminar_Fila();
+    }
     public void eleminar_Fila()
     {
 
@@ -204,6 +208,14 @@ public class Matriz_UI : MonoBehaviour
         fila--;
         checkDimension(); 
         corchetes.EliminarFila();
+        if (inversa == null) return;
+
+        inversa.eleminar_Columna();
     }
+    public Transform CorcheteRigth()
+    {
+        return corchetes.CorcheteRigth();
+    }
+  
 
 }

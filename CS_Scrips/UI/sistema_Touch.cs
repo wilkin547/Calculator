@@ -1,135 +1,73 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class sistema_Touch : MonoBehaviour, IDragHandler, IEndDragHandler
+public class sistema_Touch : MonoBehaviour
 {
-    private Vector2 inicio;
-    private Vector2 final;
+    private static Vector2 inicio;
+    private static Vector2 final;
     private Touch Mi_Touche;
 
-    private int Fila;
-    private int Columna;
-
-    private float diferencia_X;
-    private float diferencia_Y;
-
-    
+    public static float pendiente;
+    public static direccion M;
 
     private void Update()
     {
-        /* if (Input.touchCount > 0)
-         {
-             Mi_Touche = Input.GetTouch(0);
-
-             inicio = Mi_Touche.phase == TouchPhase.Began ? Mi_Touche.position : inicio;
-
-             final = Mi_Touche.phase == TouchPhase.Ended ? Mi_Touche.position : final;
-
-
-             //1 == mayor a 0 , 2 menor a 0
-             Fila = inicio.y < final.y ? 1 : 2;
-             Columna = inicio.x < final.x ? 1 : 2;
-
-             comprueba_Diferencia();
-
-         }*/
-
-
-
-    }
-
-    private void comprueba_Diferencia()
-    {
-        if (Mi_Touche.phase == TouchPhase.Ended)
+        if (Input.touchCount > 0)
         {
+            Mi_Touche = Input.GetTouch(0);
 
-            diferencia_Y = Fila == 1 ? final.y - inicio.y : inicio.y - final.y;
-            diferencia_X = Columna == 1 ? final.x - inicio.x : inicio.x - final.x;
-
-
-            if (diferencia_X >= diferencia_Y)
+            if (Mi_Touche.phase == TouchPhase.Began)
             {
-                if (diferencia_X >= 50)
-                {
-                    if (Fila == 1)
-                    {
-                        
-                    }
-                    else
-                    {
-
-                    }
-
-
-                }
-                else
-                {
-                  
-                }
-
-
-
-            }
-            else if (diferencia_X <= diferencia_Y)
-            {
-
-                if (diferencia_Y >= 50)
-                {
-                    if (Columna == 1)
-                    {
-
-                    }
-                    else
-                    {
-
-                    }
-
-                }
-                print("no se cumplio con la diferenciaY de 50");
-
-
+                inicio = Mi_Touche.position;
             }
 
+            if (Mi_Touche.phase == TouchPhase.Ended)
+            {
+                final = Mi_Touche.position;
+                setDireccion();
+            }           
             
         }
     }
 
-    public void OnEndDrag(PointerEventData eventData)
+    public static float GetPendiente()
     {
-        Vector3 dragVectorDirection = (eventData.position - eventData.pressPosition).normalized;
-        GetDragDirection(dragVectorDirection);
+        var Result = (final.y - inicio.y) / (final.x - inicio.x);
+        return Result;
     }
 
-    private enum DraggedDirection
+    public static void setDireccion()
+    {
+        pendiente = GetPendiente();
+
+        if (pendiente >= 0  && pendiente < 4 )
+        {
+            M = direccion.Left;
+        }
+        if (pendiente > -4 / 800 && pendiente <= 0 )
+        {
+            M = direccion.Right;
+        }
+        if (pendiente >= 8 )
+        {
+            M = direccion.Up;
+        }
+        if (pendiente <= -8 )
+        {
+            M = direccion.Down;
+        }
+
+        Mensajeria.mensaje($"pendiente {M} vector inicial {inicio} vector final {final}");
+    }
+    public enum direccion
     {
         Up,
         Down,
-        Right,
-        Left
+        Left,
+        Right
     }
 
-    
-    private DraggedDirection GetDragDirection(Vector3 dragVector)
-    {
-        float positiveX = Mathf.Abs(dragVector.x);
-        float positiveY = Mathf.Abs(dragVector.y);
-        DraggedDirection draggedDir;
-        if (positiveX > positiveY)
-        {
-            draggedDir = (dragVector.x > 0) ? DraggedDirection.Right : DraggedDirection.Left;
-        }
-        else
-        {
-            draggedDir = (dragVector.y > 0) ? DraggedDirection.Up : DraggedDirection.Down;
-        }
-        Debug.Log(draggedDir);
-        print("klk");
-        return draggedDir;
-    }
 
-    public void OnDrag(PointerEventData eventData)
-    {
-        GetDragDirection(eventData.position - eventData.pressPosition);
-    }
+
 }
 

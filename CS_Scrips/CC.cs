@@ -8,7 +8,7 @@ using UnityEngine;
 /// clase para administrar los elementos de la calculadora 
 /// </summary>
 
-public class CC : MonoBehaviour
+public struct CC 
 {
 
     public static CC ins;
@@ -19,14 +19,8 @@ public class CC : MonoBehaviour
     public Matriz_UI matriz_Original;
     private void Awake()
     {
-        if (CC.ins == null)
-        {
-            CC.ins = this;
-
-        }
         matrizs = new LinkedList<Matriz_UI>();
         matrizs.AddFirst(matriz_principal);
-
     }
 
 
@@ -36,7 +30,9 @@ public class CC : MonoBehaviour
     public Matriz_UI result;
 
     public Matriz_UI CurrentMatriz;
+    public Matriz_UI CurrentMatrizInversa;
     public elemento CurrentElemento;
+    public elemento CurrentElementoInversa;
 
     public UnityEngine.UI.Text Mensaje_UI;
     public int Celdas_activas { get; internal set; }
@@ -55,11 +51,16 @@ public class CC : MonoBehaviour
 
         if (matriz_Secundaria == null)
         {
-             matriz = Instantiate(matriz_principal);
+             matriz = MonoBehaviour.Instantiate(matriz_principal);
+            matriz.name = "matrizSecundaria";
+            matriz.inversa = MonoBehaviour.Instantiate(matriz_principal.inversa);
         }
+
         else
         {
-             matriz = Instantiate(matriz_Secundaria);
+            matriz = MonoBehaviour.Instantiate(matriz_Secundaria);
+            matriz.name = "matrizResultado";
+            matriz.inversa = MonoBehaviour.Instantiate(matriz_principal.inversa,matriz_principal.GetComponentInParent<Transform>());
         }
         
         matriz.Move_Matriz(matrizs.Last.Value);
@@ -81,10 +82,10 @@ public class CC : MonoBehaviour
             Mensajeria.mensaje_Error("ya tienes mas de 2 matrizes");
             return new Matriz_UI();
         }
-        var matriz = Instantiate(matriz_Original);
+        var matriz = MonoBehaviour.Instantiate(matriz_Original);
         matriz.transform.SetParent(father);
-        matriz.transform.position = new Vector3 (300,0,0);
-        //matriz.transform.Translate(Vector2.right  * 500);
+        matriz.transform.position = matriz_principal.CorcheteRigth().position;
+        matriz.transform.Translate(Vector2.right  * 450);
 
 
         return matriz;
