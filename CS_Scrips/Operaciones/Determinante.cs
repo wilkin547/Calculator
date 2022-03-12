@@ -1,37 +1,47 @@
-﻿using UnityEngine;
-using System.Linq;
+﻿using System.Linq;
+using UnityEngine;
 
 
 public class Determinante : MonoBehaviour
 {
-    
+    public Transform canvas;
     public void Determinant()
     {
-        
-       var elem = CC.ins.agregar_matriz_original();
-           CC.ins.result = elem ;
-           Determinete.Determinar();
+
+
+        if (CC.ins.matriz_principal.dimensions == Matriz_UI.Dimensions.Incomplete) return;
+        if (CC.ins.result != null) return;
+
+        var elem = CC.ins.agregar_matriz_original();
+        CC.ins.result = elem;
+        elem.transform.parent = canvas;
+        CC.ins.result = elem;
+        Determinete.Determinar();
 
     }
 }
 
 public class Determinete : MonoBehaviour
 {
-    private static int Determinar2x2(Matriz_UI elementos)
+    public static int Determinar2x2(Matriz_UI elementos)
     {
-        
+        elemento[,] elem = new elemento[2, 2];
 
-        elemento[,] elem = new elemento[2,2];
-
-       //organize the elements
-        for (int fila = 0; fila < 2; fila++){
-            for (int columna = 0; columna < 2; columna++){
-                elem[fila,columna] = (from nodo in elementos.Elementos where nodo.columna == columna && nodo.fila == fila select nodo).First();
-                
+        //organize the elements
+        for (int fila = 0; fila < 2; fila++)
+        {
+            for (int columna = 0; columna < 2; columna++)
+            {
+                elem[fila, columna] = (from nodo in elementos.Elementos where nodo.columna == columna && nodo.fila == fila select nodo).First();
             }
         }
 
-        int result = (elem[0,0].Valor * elem[1,1].Valor) - (elem[0, 1].Valor * elem[1, 0].Valor);
+        int result = (elem[0, 0].Valor * elem[1, 1].Valor) - (elem[0, 1].Valor * elem[1, 0].Valor);
+        return result;
+    }
+    public static int Determinar2x2(elemento[] e)
+    {
+        int result = ((e[0].Valor * e[3].Valor) - (e[1].Valor * e[2].Valor));
         return result;
     }
     private static int Determinar3x3(Matriz_UI elementos)
@@ -49,9 +59,9 @@ public class Determinete : MonoBehaviour
             }
         }
 
-        result =((elem[0, 0].Valor * elem[1, 1].Valor * elem[2,2].Valor) +
-                 (elem[1, 0].Valor * elem[2, 1].Valor * elem[0,2].Valor) +
-                 (elem[2, 0].Valor * elem[0, 1].Valor * elem[1,2].Valor)
+        result = ((elem[0, 0].Valor * elem[1, 1].Valor * elem[2, 2].Valor) +
+                 (elem[1, 0].Valor * elem[2, 1].Valor * elem[0, 2].Valor) +
+                 (elem[2, 0].Valor * elem[0, 1].Valor * elem[1, 2].Valor)
 
                - (elem[2, 0].Valor * elem[1, 1].Valor * elem[0, 2].Valor) +
                  (elem[0, 0].Valor * elem[2, 1].Valor * elem[1, 2].Valor) +
@@ -67,11 +77,11 @@ public class Determinete : MonoBehaviour
             switch (CC.ins.CurrentMatriz.dimensions)
             {
                 case Matriz_UI.Dimensions._1x1:
-                    
+
                     break;
                 case Matriz_UI.Dimensions._2x2:
-                      item.Valor = Determinar2x2(CC.ins.CurrentMatriz);
-                    
+                    item.Valor = Determinar2x2(CC.ins.CurrentMatriz);
+
                     break;
                 case Matriz_UI.Dimensions._3x3:
                     item.Valor = Determinar3x3(CC.ins.CurrentMatriz);
@@ -84,7 +94,7 @@ public class Determinete : MonoBehaviour
                     Mensajeria.mensaje_Error("error , la matriz debe ser cuadrada : 2x2 , 3x3 , 4x4");
                     break;
                 default:
-                    
+
                     break;
             }
             item.Numero.text = item.Valor.ToString();

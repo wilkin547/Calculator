@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Agregar_Fila : MonoBehaviour
 {
-    public void Agregar()
+    public static void Agregar()
     {
         CC.ins.CurrentMatriz.Agregar_Fila();
     }

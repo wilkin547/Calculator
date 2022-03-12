@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 using System.Linq;
 
@@ -24,8 +23,13 @@ public class elemento : MonoBehaviour
         Mensajeria.mensaje($"la matriz actual es {father.name}");
         Mensajeria.mensaje($"el elemento actual es la celda {columna}{fila}");
     }
+    public void reset()
+    {
+        Valor = 0;
+        Numero.text = "";
+    }
 
-    
+
 
 
 

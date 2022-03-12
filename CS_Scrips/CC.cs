@@ -8,17 +8,25 @@ using UnityEngine;
 /// clase para administrar los elementos de la calculadora 
 /// </summary>
 
-public struct CC 
-{
-
+public class CC : MonoBehaviour
+{   
     public static CC ins;
+    
+
+    
     public LinkedList<Matriz_UI> matrizs;
     public Matriz_UI matriz_principal;
     public Matriz_UI matriz_Secundaria;
     public Transform father;
     public Matriz_UI matriz_Original;
+
     private void Awake()
     {
+        if (ins == null)
+        {
+            ins = this;
+
+        }
         matrizs = new LinkedList<Matriz_UI>();
         matrizs.AddFirst(matriz_principal);
     }
@@ -37,7 +45,10 @@ public struct CC
     public UnityEngine.UI.Text Mensaje_UI;
     public int Celdas_activas { get; internal set; }
 
-
+    public object Clone()
+    {
+        return MemberwiseClone();
+    }
     public Matriz_UI agregar_matriz()
     {
 

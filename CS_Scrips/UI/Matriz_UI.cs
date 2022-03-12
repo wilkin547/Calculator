@@ -38,7 +38,7 @@ public class Matriz_UI : MonoBehaviour
 
             if (Elementos.Contains(item)) continue;
 
-                Elementos.AddFirst(Elem);
+            Elementos.AddFirst(Elem);
 
         }
 
@@ -73,7 +73,7 @@ public class Matriz_UI : MonoBehaviour
         if (inversa == null) return;
 
         inversa.Agregar_Fila();
- 
+
     }
     public void Agregar_Fila()
     {
@@ -120,7 +120,7 @@ public class Matriz_UI : MonoBehaviour
             Destroy(Elementos.First.Value.gameObject);
             Elementos.RemoveFirst();
         }
-        
+
     }
     public enum Dimensions
     {
@@ -133,7 +133,7 @@ public class Matriz_UI : MonoBehaviour
     }
     private void checkDimension()
     {
-        
+
         if (fila == columna)
         {
             switch (fila)
@@ -174,12 +174,16 @@ public class Matriz_UI : MonoBehaviour
 
         foreach (var item in Elementos)
         {
-          //  item.GetComponent<RectTransform>().Translate(item.GetComponent<RectTransform>().transform.right * -60);
+            //  item.GetComponent<RectTransform>().Translate(item.GetComponent<RectTransform>().transform.right * -60);
         }
 
         if (columna == 0) return;
 
         columna--;
+        if (CC.ins.matriz_principal == this)
+        {
+            transform.Translate(Vector2.right * 125);
+        }
         checkDimension();
         corchetes.EliminarColumna();
 
@@ -193,7 +197,8 @@ public class Matriz_UI : MonoBehaviour
 
         elemento[] elem = (from nodo in Elementos where nodo.fila == fila select nodo).ToArray();
 
-        foreach (var item in elem){
+        foreach (var item in elem)
+        {
             Elementos.Remove(item);
             Destroy(item.gameObject);
         }
@@ -204,18 +209,36 @@ public class Matriz_UI : MonoBehaviour
         }
 
         if (fila == 0) return;
-        
+
         fila--;
-        checkDimension(); 
+        checkDimension();
         corchetes.EliminarFila();
         if (inversa == null) return;
 
         inversa.eleminar_Columna();
     }
+    public object Clone()
+    {
+        return MemberwiseClone();
+    }
+    public void reset()
+    {
+        while (columna > 0)
+        {
+            eleminar_Columna();
+
+        }
+        while (fila > 0)
+        {
+            eleminar_Fila();
+        }
+
+    }
+
     public Transform CorcheteRigth()
     {
         return corchetes.CorcheteRigth();
     }
-  
+
 
 }
