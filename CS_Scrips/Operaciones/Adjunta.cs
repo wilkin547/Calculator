@@ -48,11 +48,11 @@ public class Adjunta : MonoBehaviour
     }
 
 
-    private int Adjuntar3x3(Matriz_UI UI,elemento e)
+    private float Adjuntar3x3(Matriz_UI UI,elemento e)
     {
 
         var elem = (from nodo in UI.Elementos where nodo.columna != e.columna && nodo.fila != e.fila orderby  nodo.fila ascending select nodo).ToArray();
-        int result = Determinete.Determinar2x2(elem);
+        float result = Determinete.Determinar2x2(elem);
 
         return result;
 

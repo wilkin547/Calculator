@@ -16,7 +16,8 @@ public class Autorezise : MonoBehaviour
 
     void Update()
     {
-        if (Input.deviceOrientation == DeviceOrientation.Portrait || Input.deviceOrientation == DeviceOrientation.PortraitUpsideDown)
+         
+        if (Screen.orientation == ScreenOrientation.Portrait )
         {
             portrait.gameObject.SetActive( true );
             landScape.gameObject.SetActive( false );
@@ -26,5 +27,7 @@ public class Autorezise : MonoBehaviour
             portrait.gameObject.SetActive(false);
             landScape.gameObject.SetActive(true);
         }
+
+
     }
 }

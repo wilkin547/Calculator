@@ -19,6 +19,7 @@ public class CC : MonoBehaviour
     public Matriz_UI matriz_Secundaria;
     public Transform father;
     public Matriz_UI matriz_Original;
+    public bool IsFloat;
 
     private void Awake()
     {
@@ -148,26 +149,26 @@ public class Mensajeria
 }
 public class Sumar_Elementos : Organizar_elementos
 {
-    public static void Sumar()
+    public static void Sumar(elemento[] a , elemento[]e)
     {
         Organizar();
 
-        for (int i = 0; i < Result.Length; i++)
+        for (int i = 0; i < a.Length; i++)
         {
-            Result[i].Valor -= Secundaria[i].Valor;
+            a[i].Valor += e[i].Valor;
         }
     }
 
 }
 public class Restar_Elementos : Organizar_elementos
 {
-    public static void Restar()
+    public static void Restar(elemento[] result , elemento[] Secundaria)
     {
-
+ 
         Organizar();
-        for (int i = 0; i < Result.Length; i++)
+        for (int i = 0; i < result.Length; i++)
         {
-            Result[i].Valor -= Secundaria[i].Valor;
+            result[i].Valor -= Secundaria[i].Valor;
         }
     }
 
@@ -214,13 +215,13 @@ public class Multiplicar_Elementos
 
         foreach (var item in CC.ins.result.Elementos)
         {
-            item.Valor = product_filaXcolumnas(item.fila, item.columna);
+            item.Valor = Product_filaXcolumnas(item.fila, item.columna);
         }
 
 
     }
 
-    private static int product_filaXcolumnas(int fila, int columna)
+    private static float Product_filaXcolumnas(int fila, int columna)
     {
         /*
          * result += A11 * B11
@@ -232,7 +233,7 @@ public class Multiplicar_Elementos
         elemento[] seccion1 = (from nodo in CC.ins.matriz_principal.Elementos where nodo.fila == fila orderby nodo.columna select nodo).ToArray();
         elemento[] seccion2 = (from nodo in CC.ins.matriz_Secundaria.Elementos where nodo.columna == columna orderby nodo.fila select nodo).ToArray();
 
-        int resultado = 0;
+        float resultado = 0;
         for (int i = 0; i < seccion2.Length; i++)
         {
             resultado += seccion1[i].Valor * seccion2[i].Valor;

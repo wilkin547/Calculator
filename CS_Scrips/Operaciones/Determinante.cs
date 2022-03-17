@@ -23,7 +23,7 @@ public class Determinante : MonoBehaviour
 
 public class Determinete : MonoBehaviour
 {
-    public static int Determinar2x2(Matriz_UI elementos)
+    public static float Determinar2x2(Matriz_UI elementos)
     {
         elemento[,] elem = new elemento[2, 2];
 
@@ -36,17 +36,17 @@ public class Determinete : MonoBehaviour
             }
         }
 
-        int result = (elem[0, 0].Valor * elem[1, 1].Valor) - (elem[0, 1].Valor * elem[1, 0].Valor);
+        float result = (elem[0, 0].Valor * elem[1, 1].Valor) - (elem[0, 1].Valor * elem[1, 0].Valor);
         return result;
     }
-    public static int Determinar2x2(elemento[] e)
+    public static float Determinar2x2(elemento[] e)
     {
-        int result = ((e[0].Valor * e[3].Valor) - (e[1].Valor * e[2].Valor));
+        float result = ((e[0].Valor * e[3].Valor) - (e[1].Valor * e[2].Valor));
         return result;
     }
-    private static int Determinar3x3(Matriz_UI elementos)
+    private static float Determinar3x3(Matriz_UI elementos)
     {
-        int result = 0;
+        float result = 0;
         elemento[,] elem = new elemento[3, 3];
 
         //organize the elements

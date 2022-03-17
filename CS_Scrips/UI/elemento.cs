@@ -5,9 +5,10 @@ using System.Linq;
 public class elemento : MonoBehaviour
 {
     
-    public int Valor;
+    public float   Valor;
     
     public TMP_Text Numero;
+    public int numeroflotante;
 
     public int columna;
     public int fila;
@@ -27,6 +28,11 @@ public class elemento : MonoBehaviour
     {
         Valor = 0;
         Numero.text = "";
+    }
+    public void UpdateText()
+    {
+        Numero.text = Valor.ToString();
+        CC.ins.CurrentElementoInversa.Numero.text = Valor.ToString();
     }
 
 
