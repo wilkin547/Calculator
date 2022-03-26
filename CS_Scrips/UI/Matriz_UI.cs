@@ -164,20 +164,16 @@ public class Matriz_UI : MonoBehaviour
     {
 
 
+        if (columna == 0) return;
         var elem = (from nodo in Elementos where nodo.columna == columna select nodo).ToArray();
-
+        
         foreach (var item in elem)
         {
             Elementos.Remove(item);
             Destroy(item.gameObject);
         }
 
-        foreach (var item in Elementos)
-        {
-            //  item.GetComponent<RectTransform>().Translate(item.GetComponent<RectTransform>().transform.right * -60);
-        }
-
-        if (columna == 0) return;
+        
 
         columna--;
         if (CC.ins.matriz_principal == this)
@@ -194,7 +190,7 @@ public class Matriz_UI : MonoBehaviour
     public void eleminar_Fila()
     {
 
-
+        if (fila == 0) return;
         elemento[] elem = (from nodo in Elementos where nodo.fila == fila select nodo).ToArray();
 
         foreach (var item in elem)
@@ -208,7 +204,7 @@ public class Matriz_UI : MonoBehaviour
             item.GetComponent<RectTransform>().Translate(item.GetComponent<RectTransform>().transform.up * -120);
         }
 
-        if (fila == 0) return;
+        
 
         fila--;
         checkDimension();

@@ -5,7 +5,7 @@ using System.Linq;
 public class elemento : MonoBehaviour
 {
     
-    public float   Valor;
+    public float Valor;
     
     public TMP_Text Numero;
     public int numeroflotante;
@@ -33,6 +33,10 @@ public class elemento : MonoBehaviour
     {
         Numero.text = Valor.ToString();
         CC.ins.CurrentElementoInversa.Numero.text = Valor.ToString();
+    }
+    public object clone()
+    {
+        return MemberwiseClone();
     }
 
 
