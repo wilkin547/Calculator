@@ -34,9 +34,13 @@ public class elemento : MonoBehaviour
         Numero.text = Valor.ToString();
         CC.ins.CurrentElementoInversa.Numero.text = Valor.ToString();
     }
-    public object clone()
+    public void clone(elemento elem)
     {
-        return MemberwiseClone();
+        elem.numeroflotante = numeroflotante;
+        elem.Numero.text = Numero.text;
+        elem.columna = columna;
+        elem.fila = fila;
+        elem.father = father;
     }
 
 
