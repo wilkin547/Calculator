@@ -17,6 +17,7 @@ public class History : MonoBehaviour
     {
         StepHistory.Add(indice, new StepHistory());
         indice++;
+   
     }
 
     public void removeStep()

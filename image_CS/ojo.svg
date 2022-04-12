@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1.2 (b8e25be833, 2022-02-05)"
+   sodipodi:docname="ojo.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="2.0308884"
+     inkscape:cx="521.20046"
+     inkscape:cy="518.49229"
+     inkscape:window-width="1586"
+     inkscape:window-height="1030"
+     inkscape:window-x="156"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer2" />
+  <defs
+     id="defs2">
+    <filter
+       inkscape:collect="always"
+       style="color-interpolation-filters:sRGB"
+       id="filter3775"
+       x="-0.0042169674"
+       y="-0.0084278488"
+       width="1.0084339"
+       height="1.0168557">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="0.076178258"
+         id="feGaussianBlur3777" />
+    </filter>
+  </defs>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="Capa 2"
+     style="display:inline;filter:url(#filter3775)">
+    <g
+       id="g3392"
+       style="display:inline;fill:#4169e1;fill-opacity:1;stroke:#000000"
+       transform="translate(-8.9241514,3.4523927)">
+      <ellipse
+         style="fill:#4169e1;fill-opacity:1;stroke:#000000;stroke-width:0.264583"
+         id="path2357"
+         cx="122.65824"
+         cy="133.21091"
+         rx="37.363262"
+         ry="18.695122" />
+    </g>
+  </g>
+  <g
+     inkscape:label="Capa 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     style="display:inline">
+    <ellipse
+       style="fill:#fffafa;fill-opacity:1;stroke:#000000;stroke-width:0.260779"
+       id="path144"
+       cx="114.37546"
+       cy="136.65512"
+       rx="21.599224"
+       ry="18.893373" />
+    <ellipse
+       style="fill:#000000;stroke:#000000;stroke-width:0.264583"
+       id="path2403"
+       cx="115.10203"
+       cy="136.27246"
+       rx="6.0580015"
+       ry="14.591315" />
+  </g>
+</svg>

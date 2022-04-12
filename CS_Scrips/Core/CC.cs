@@ -9,11 +9,12 @@ using UnityEngine;
 /// </summary>
 
 public class CC : MonoBehaviour
-{   
-    public static CC ins;
-    
 
-    
+{
+    public static CC ins;
+
+
+
     public LinkedList<Matriz_UI> matrizs;
     public Matriz_UI matriz_principal;
     public Matriz_UI matriz_Secundaria;
@@ -61,20 +62,25 @@ public class CC : MonoBehaviour
 
         var matriz = new Matriz_UI();
 
+        //si no hay secundaria
         if (matriz_Secundaria == null)
         {
-             matriz = MonoBehaviour.Instantiate(matriz_principal);
+            matriz = MonoBehaviour.Instantiate(matriz_principal);
+            matriz.inversa = MonoBehaviour.Instantiate(matriz_principal.inversa, father);
             matriz.name = "matrizSecundaria";
-            matriz.inversa = MonoBehaviour.Instantiate(matriz_principal.inversa);
+
+            matriz.inversa.name = "InversaSecundaria";
         }
 
+        //si no hay resultado
         else
         {
-            matriz = MonoBehaviour.Instantiate(matriz_Secundaria);
+            matriz = MonoBehaviour.Instantiate(matriz_Secundaria, father);
             matriz.name = "matrizResultado";
-            matriz.inversa = MonoBehaviour.Instantiate(matriz_principal.inversa,matriz_principal.GetComponentInParent<Transform>());
+            matriz.inversa = MonoBehaviour.Instantiate(matriz_Secundaria.inversa, father);
+            matriz.inversa.name = "inversaResult";
         }
-        
+
         matriz.Move_Matriz(matrizs.Last.Value);
         matrizs.AddLast(matriz);
 
@@ -97,13 +103,28 @@ public class CC : MonoBehaviour
         var matriz = MonoBehaviour.Instantiate(matriz_Original);
         matriz.transform.SetParent(father);
         matriz.transform.position = matriz_principal.CorcheteRigth().position;
-        matriz.transform.Translate(Vector2.right  * 450);
+        matriz.transform.Translate(Vector2.right * 450);
 
 
         return matriz;
 
     }
 
+    public void ResetMatriz()
+    {
+        matriz_principal.Reset();
+
+        if (matriz_Secundaria != null)
+        {
+            matriz_Secundaria.Reset();
+
+        }
+        if (result != null)
+        {
+            result.Reset();
+
+        }
+    }
 }
 
 
@@ -149,22 +170,23 @@ public class Mensajeria
 }
 public class Sumar_Elementos : Organizar_elementos
 {
-    public static void Sumar(elemento[] a , elemento[]e)
+    public static void Sumar(Matriz_UI a, Matriz_UI e)
     {
-        Organizar();
+        var Base = a.Elementos.OrderBy(elem => elem.columna).ToArray();
+        var Adiction = e.Elementos.OrderBy(elem => elem.columna).ToArray();
 
-        for (int i = 0; i < a.Length; i++)
+        for (int i = 0; i < Base.Count(); i++)
         {
-            a[i].Valor += e[i].Valor;
+            Base[i].Valor += Adiction[i].Valor;
         }
     }
 
 }
 public class Restar_Elementos : Organizar_elementos
 {
-    public static void Restar(elemento[] result , elemento[] Secundaria)
+    public static void Restar(elemento[] result, elemento[] Secundaria)
     {
- 
+
         Organizar();
         for (int i = 0; i < result.Length; i++)
         {

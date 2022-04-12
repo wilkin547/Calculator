@@ -15,7 +15,8 @@ public class Determinante : MonoBehaviour
         var elem = CC.ins.agregar_matriz_original();
         CC.ins.result = elem;
         elem.transform.parent = canvas;
-        CC.ins.result = elem;
+        elem.name = "Deter";
+        elem.tag = "Result";
         Determinete.Determinar();
 
     }

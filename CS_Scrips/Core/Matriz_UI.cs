@@ -7,8 +7,8 @@ using UnityEngine;
 public class Matriz_UI : MonoBehaviour
 {
 
-    public byte columna = 0;
-    public byte fila = 0;
+    public int columna = 0;
+    public int fila = 0;
 
     public Dimensions dimensions = new Dimensions();
 
@@ -22,6 +22,7 @@ public class Matriz_UI : MonoBehaviour
     {
         Elementos = new LinkedList<elemento>();
         Agregar_Celdas();
+        
     }
 
     public Matriz_UI()
@@ -30,16 +31,9 @@ public class Matriz_UI : MonoBehaviour
     }
 
     //inicializamos con una copia de una matriz existente
-    public Matriz_UI(Matriz_UI UI)
+    public Matriz_UI(Matriz_UI Copia)
     {
-        elemento[] elem = UI.Elementos.ToArray();
-        int indice = elem.Length -1;
-
-        while (UI.Elementos.Count >= this.Elementos.Count)
-        {
-            this.Elementos.AddFirst(new elemento());
-            elem[indice].clone(this.Elementos.First.Value);
-        }
+        
 
     }
     public void Agregar_Celdas()
@@ -71,10 +65,11 @@ public class Matriz_UI : MonoBehaviour
     {
 
 
-        var Elem = (from Nodo in Elementos where Nodo.columna == columna select Nodo).ToList<elemento>();
+        
+        var Elem = (from Nodo in Elementos where Nodo.columna == columna select Nodo).ToList();
 
         //utilizo el copy , para no recrearlo para cada bucle
-        elemento Copy;
+        elemento Copy = new elemento();
 
         foreach (var item in Elem)
         {
@@ -82,7 +77,7 @@ public class Matriz_UI : MonoBehaviour
             Copy.columna++;
             Copy.gameObject.GetComponent<RectTransform>().Translate(item.transform.right * 120);
         }
-
+        
         corchetes.agregarColumna();
         columna++;
 
@@ -132,17 +127,35 @@ public class Matriz_UI : MonoBehaviour
     }
     public void Move_Matriz(Matriz_UI matriz_UI)
     {
-        transform.parent = matriz_UI.transform.parent;
-        transform.position = matriz_UI.transform.position;
-        transform.Translate(Vector2.right * 190 * (matriz_UI.columna + 1));
+        this.transform.parent = matriz_UI.transform.parent;
+        this.transform.position = matriz_UI.transform.position;
+        this.transform.localScale = new Vector3(1, 1, 1);
+        this.transform.Translate(Vector2.right * 190 * (matriz_UI.columna + 1));
     }
     public void Reset()
     {
+        while (columna > 0)
+        {
+            eleminar_Columna();
+
+        }
+        while (fila > 0)
+        {
+            eleminar_Fila();
+        }
+
+        foreach (var item in Elementos)
+        {
+            item.reset();
+        }
+
         while (Elementos.Count > 1)
         {
             Destroy(Elementos.First.Value.gameObject);
             Elementos.RemoveFirst();
         }
+
+
 
     }
     public enum Dimensions
@@ -236,28 +249,32 @@ public class Matriz_UI : MonoBehaviour
 
         inversa.eleminar_Columna();
     }
-    public void Clone(Matriz_UI uI)
+    public void Clonar(Matriz_UI Copia)
     {
-        
-    }
-    public void reset()
-    {
-        while (columna > 0)
+        this.columna = Copia.columna;
+        this.fila = Copia.fila;
+        this.transform.SetPositionAndRotation(Copia.transform.position, Copia.transform.rotation);
+        this.transform.parent = Copia.transform.parent;
+        this.dimensions = Copia.dimensions;
+
+        //Clonar elementos
+        elemento[] elem = Copia.Elementos.ToArray();
+        int indice = elem.Length -1;
+
+        while (Copia.Elementos.Count >= this.Elementos.Count)
         {
-            eleminar_Columna();
-
+            this.Elementos.AddFirst(new elemento());
+            elem[indice].Clonar(this.Elementos.First.Value);
         }
-        while (fila > 0)
-        {
-            eleminar_Fila();
-        }
-
     }
-
+  
     public Transform CorcheteRigth()
     {
         return corchetes.CorcheteRigth();
     }
-
+    public object Clone()
+    {
+        return MemberwiseClone();
+    }
 
 }

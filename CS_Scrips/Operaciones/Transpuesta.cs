@@ -7,7 +7,5 @@ public class Transpuesta : MonoBehaviour
     {
         CC.ins.CurrentMatrizInversa.transform.position = CC.ins.CurrentMatriz.transform.position;
         Destroy(CC.ins.CurrentMatriz.gameObject);
-
-
     }
 }

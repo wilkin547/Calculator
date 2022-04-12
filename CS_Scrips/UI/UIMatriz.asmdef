@@ -1,8 +1,9 @@
 {
-    "name": "MyClass",
+    "name": "UIMatriz",
     "rootNamespace": "",
     "references": [
-        ""
+        "GUID:3b313424608e75f4cacad269f4837912",
+        "GUID:ebb0a1660ab89fd4b929c5e9af3c4eff"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

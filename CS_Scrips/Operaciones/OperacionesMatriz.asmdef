@@ -1,0 +1,17 @@
+{
+    "name": "OperacionesMatriz",
+    "rootNamespace": "",
+    "references": [
+        "GUID:ebb0a1660ab89fd4b929c5e9af3c4eff",
+        "GUID:6055be8ebefd69e48b49212b09b47b2f"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

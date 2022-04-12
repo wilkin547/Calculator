@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Linq;
 
-public class Suma : ComprobarMatrizes
+public class Suma : ComprobarMatrizes 
 {
     public override void operar()
     {
@@ -9,6 +9,7 @@ public class Suma : ComprobarMatrizes
         base.operar();
         elemento[] result = CC.ins.result.Elementos.ToArray();
         elemento[] principal = CC.ins.matriz_principal.Elementos.ToArray();
+
         for (int i = 0; i < result.Length; i++)
         {
             result[i].Valor = principal[i].Valor;
@@ -17,7 +18,7 @@ public class Suma : ComprobarMatrizes
         {
             Mensajeria.mensaje_Error("ambas matrices deben tener las mismas dimensiones");
         }
-        Sumar_Elementos.Sumar(CC.ins.result.Elementos.ToArray(),CC.ins.matriz_Secundaria.Elementos.ToArray());
+        Sumar_Elementos.Sumar(CC.ins.result,CC.ins.matriz_Secundaria);
 
         foreach (var item in CC.ins.result.Elementos){
             item.Numero.text = item.Valor.ToString();
@@ -26,7 +27,10 @@ public class Suma : ComprobarMatrizes
     }
 
 
-
+    public static Suma GetSuma()
+    {
+        return new Suma();
+    }
 }
 
 
