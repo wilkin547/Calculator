@@ -13,7 +13,7 @@ public class Del : MonoBehaviour
 
             Destroy(CC.ins.matriz_Secundaria.gameObject);
         }
-        Destroy(CC.ins.result.gameObject);
+        
         CC.ins.result = null;
 
         var Result = GameObject.FindGameObjectWithTag("Result");

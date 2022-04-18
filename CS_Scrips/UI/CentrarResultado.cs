@@ -34,8 +34,6 @@ public class CentrarResultado : MonoBehaviour
         CC.ins.CurrentMatriz = CC.ins.matriz_principal;
         CC.ins.CurrentMatrizInversa = CC.ins.matriz_principal.inversa;
 
-        CC.ins.matrizs.Clear();
-        CC.ins.matrizs.AddFirst(CC.ins.result);
         CC.ins.result = null;  
         if (CC.ins.CurrentElemento == null)
         {

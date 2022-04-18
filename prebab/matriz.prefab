@@ -192,8 +192,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 3.2747, y: 0.6481}
-  m_SizeDelta: {x: 114.1892, y: 105.5016}
+  m_AnchoredPosition: {x: -9.8, y: -1.5514}
+  m_SizeDelta: {x: 107.82, y: 101.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4807601319208182076
 CanvasRenderer:
@@ -286,7 +286,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 1.091095, y: 0, z: 0, w: 0}
+  m_margin: {x: 1.091095, y: 0.091552734, z: 0.71746826, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -327,7 +327,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 78.5, y: 0}
+  m_AnchoredPosition: {x: 79, y: 0}
   m_SizeDelta: {x: 11.869507, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7671769983890890133
@@ -378,6 +378,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7671769983891027783}
   - component: {fileID: 7759812042216368822}
+  - component: {fileID: 828683343}
   m_Layer: 5
   m_Name: corchetes
   m_TagString: Untagged
@@ -394,7 +395,7 @@ RectTransform:
   m_GameObject: {fileID: 7671769983891027782}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1.2125, z: 1}
+  m_LocalScale: {x: 1, y: 1.3450493, z: 1}
   m_Children:
   - {fileID: 7671769983890890135}
   - {fileID: 7671769984605289388}
@@ -403,7 +404,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 311, y: 6}
   m_SizeDelta: {x: 101, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &7759812042216368822
@@ -418,9 +419,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da8c7b9b534a2224991c477ff544a4df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Corchete_Left: {fileID: 0}
+  Corchete_Rigth: {fileID: 0}
   matriz: {fileID: 6574473258690654702}
   RangoColumna: 200
   RangoFila: -69
+--- !u!225 &828683343
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7671769983891027782}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &7671769984112084459
 GameObject:
   m_ObjectHideFlags: 0
@@ -434,6 +449,7 @@ GameObject:
   - component: {fileID: 7671769984112084457}
   - component: {fileID: 7671769984112084456}
   - component: {fileID: 1411855913}
+  - component: {fileID: 1198072571}
   m_Layer: 5
   m_Name: celda00
   m_TagString: Celda
@@ -458,7 +474,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 321.19998, y: 6}
   m_SizeDelta: {x: 108, y: 98}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7671769984112084462
@@ -513,6 +529,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Valor: 0
   Numero: {fileID: 6988765938870670002}
+  numeroflotante: 0
   columna: 0
   fila: 0
   father: {fileID: 6574473258690654702}
@@ -572,6 +589,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!225 &1198072571
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7671769984112084459}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &7671769984141782047
 GameObject:
   m_ObjectHideFlags: 0
@@ -582,6 +611,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7671769984141782044}
   - component: {fileID: 6574473258690654702}
+  - component: {fileID: 226583859}
   m_Layer: 5
   m_Name: matriz
   m_TagString: Matriz
@@ -625,7 +655,20 @@ MonoBehaviour:
   columna: 0
   fila: 0
   dimensions: 0
+  inversa: {fileID: 0}
   corchetes: {fileID: 7759812042216368822}
+--- !u!225 &226583859
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7671769984141782047}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &7671769984605289391
 GameObject:
   m_ObjectHideFlags: 0

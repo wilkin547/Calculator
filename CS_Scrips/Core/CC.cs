@@ -15,7 +15,6 @@ public class CC : MonoBehaviour
 
 
 
-    public LinkedList<Matriz_UI> matrizs;
     public Matriz_UI matriz_principal;
     public Matriz_UI matriz_Secundaria;
     public Transform father;
@@ -29,8 +28,7 @@ public class CC : MonoBehaviour
             ins = this;
 
         }
-        matrizs = new LinkedList<Matriz_UI>();
-        matrizs.AddFirst(matriz_principal);
+        
     }
 
 
@@ -54,7 +52,7 @@ public class CC : MonoBehaviour
     public Matriz_UI agregar_matriz()
     {
 
-        if (matrizs.Count > 2)
+        if (result != null)
         {
             Mensajeria.mensaje_Error("ya tienes mas de 2 matrizes");
             return new Matriz_UI();
@@ -65,8 +63,8 @@ public class CC : MonoBehaviour
         //si no hay secundaria
         if (matriz_Secundaria == null)
         {
-            matriz = MonoBehaviour.Instantiate(matriz_principal);
-            matriz.inversa = MonoBehaviour.Instantiate(matriz_principal.inversa, father);
+            matriz = Instantiate(matriz_principal,father);
+            matriz.inversa = Instantiate(matriz_principal.inversa, father);
             matriz.name = "matrizSecundaria";
 
             matriz.inversa.name = "InversaSecundaria";
@@ -75,14 +73,11 @@ public class CC : MonoBehaviour
         //si no hay resultado
         else
         {
-            matriz = MonoBehaviour.Instantiate(matriz_Secundaria, father);
+            matriz = Instantiate(matriz_Secundaria, father);
             matriz.name = "matrizResultado";
-            matriz.inversa = MonoBehaviour.Instantiate(matriz_Secundaria.inversa, father);
+            matriz.inversa = Instantiate(matriz_Secundaria.inversa, father);
             matriz.inversa.name = "inversaResult";
         }
-
-        matriz.Move_Matriz(matrizs.Last.Value);
-        matrizs.AddLast(matriz);
 
         return matriz;
 
@@ -95,12 +90,12 @@ public class CC : MonoBehaviour
     public Matriz_UI agregar_matriz_original()
     {
 
-        if (matrizs.Count > 2)
+        if (result != null)
         {
-            Mensajeria.mensaje_Error("ya tienes mas de 2 matrizes");
+            Mensajeria.mensaje_Error("ya tienes mas de 3 matrizes");
             return new Matriz_UI();
         }
-        var matriz = MonoBehaviour.Instantiate(matriz_Original);
+        var matriz = Instantiate(matriz_Original);
         matriz.transform.SetParent(father);
         matriz.transform.position = matriz_principal.CorcheteRigth().position;
         matriz.transform.Translate(Vector2.right * 450);
@@ -112,18 +107,17 @@ public class CC : MonoBehaviour
 
     public void ResetMatriz()
     {
-        matriz_principal.Reset();
 
-        if (matriz_Secundaria != null)
-        {
-            matriz_Secundaria.Reset();
+        Destroy(matriz_principal.gameObject);
 
-        }
-        if (result != null)
-        {
-            result.Reset();
+        if (matriz_Secundaria != null) Destroy(matriz_Secundaria.gameObject);
+        
+        if (result != null) Destroy(result.gameObject);
 
-        }
+        var matriz = Instantiate(matriz_Original, father);
+        matriz.transform.Translate(0, 0, 0);
+        matriz_principal = matriz;
+
     }
 }
 
@@ -133,14 +127,13 @@ public class Agregar_Matriz_UI
 
     public void agregar()
     {
-        if (CC.ins.matrizs.Count >= 3)
+        if (CC.ins.result != null)
         {
             Mensajeria.mensaje_Error("ya tienes mas de 3 matrizes");
         }
 
         var matriz = UnityEngine.MonoBehaviour.Instantiate(CC.ins.matriz_principal);
-        matriz.Move_Matriz(CC.ins.matrizs.Last.Value);
-        CC.ins.matrizs.AddLast(matriz);
+        matriz.Move_Matriz(CC.ins.matriz_principal);
 
         if (matriz.name.Contains("clone"))
         {

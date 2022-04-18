@@ -132,32 +132,7 @@ public class Matriz_UI : MonoBehaviour
         this.transform.localScale = new Vector3(1, 1, 1);
         this.transform.Translate(Vector2.right * 190 * (matriz_UI.columna + 1));
     }
-    public void Reset()
-    {
-        while (columna > 0)
-        {
-            eleminar_Columna();
 
-        }
-        while (fila > 0)
-        {
-            eleminar_Fila();
-        }
-
-        foreach (var item in Elementos)
-        {
-            item.reset();
-        }
-
-        while (Elementos.Count > 1)
-        {
-            Destroy(Elementos.First.Value.gameObject);
-            Elementos.RemoveFirst();
-        }
-
-
-
-    }
     public enum Dimensions
     {
         _1x1,
